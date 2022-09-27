@@ -231,8 +231,9 @@ public final class SpaceInvadersGame {
     private void createMovables() {
         // On commence par enlever tous les éléments mobiles encore présents.
         clearAllMovables();
-
-        // TODO Créer le vaisseau du joueur et les aliens.
+        //Spaceship ship = new Spaceship(this, );
+        this.ship = this.factory.createShip(getRightLimit(), getBottomLimit());
+        addMovable(this.ship);
     }
 
     /**
