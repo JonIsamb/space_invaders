@@ -12,7 +12,7 @@ public class Shot extends AbstractMovable {
     }
     @Override
     public void collidedWith(IMovable other) {
-
+        game.removeMovable(this);
     }
 
     @Override
