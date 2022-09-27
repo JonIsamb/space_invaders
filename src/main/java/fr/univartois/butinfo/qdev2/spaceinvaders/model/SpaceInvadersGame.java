@@ -267,8 +267,6 @@ public final class SpaceInvadersGame {
             this.lastShot = System.currentTimeMillis();
             addMovable(shot);
         }
-        
-        // TODO Déclencher un tir, à condition que le délai ait été respecté.
     }
 
     /**
@@ -278,14 +276,17 @@ public final class SpaceInvadersGame {
      * @param alien L'alien qui a été tué.
      */
     public void alienIsDead(IMovable alien) {
-        // TODO Mettre à jour l'état du jeu.
+        nbRemainingAliens--;
+        if (nbRemainingAliens == 0) {
+            controller.gameOver("Vous avez vaincu les aliens !");
+        }
     }
 
     /**
      * Réduit la vie du joueur, et interrompt la partie si elle atteint 0.
      */
     public void reducePlayerLife() {
-        // TODO Réduire la vie du joueur.
+        
     }
 
     /**
