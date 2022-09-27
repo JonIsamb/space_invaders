@@ -1,5 +1,5 @@
 /**
- * Ce logiciel est distribué à des fins éducatives.
+  * Ce logiciel est distribué à des fins éducatives.
  *
  * Il est fourni "tel quel", sans garantie d’aucune sorte, explicite
  * ou implicite, notamment sans garantie de qualité marchande, d’adéquation
@@ -270,7 +270,12 @@ public final class SpaceInvadersGame {
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
      */
     public void fireShot() {
-        // TODO Déclencher un tir, à condition que le délai ait été respecté.
+        long ecouler = (System.currentTimeMillis() - this.lastShot);
+        if (SHOT_TEMPORIZATION<ecouler) {
+            IMovable shot = factory.createShot(ship.getWidth(), ship.getHeight());
+            this.lastShot = System.currentTimeMillis();
+            addMovable(shot);
+        }
     }
 
     /**
@@ -280,14 +285,20 @@ public final class SpaceInvadersGame {
      * @param alien L'alien qui a été tué.
      */
     public void alienIsDead(IMovable alien) {
-        // TODO Mettre à jour l'état du jeu.
+        nbRemainingAliens--;
+        if (nbRemainingAliens == 0) {
+            controller.gameOver("Vous avez vaincu les aliens !");
+        }
     }
 
     /**
      * Réduit la vie du joueur, et interrompt la partie si elle atteint 0.
      */
     public void reducePlayerLife() {
-        // TODO Réduire la vie du joueur.
+        life.setValue(life.get()-1);
+        if (life.get()==0) {
+            playerIsDead();
+        } 
     }
 
     /**
