@@ -14,6 +14,7 @@ public class Spaceship extends AbstractMovable {
      */
     protected Spaceship(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
+        this.setHorizontalSpeed(150);
     }
 
     @Override
