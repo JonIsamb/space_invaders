@@ -278,6 +278,7 @@ public final class SpaceInvadersGame {
     public void alienIsDead(IMovable alien) {
         nbRemainingAliens--;
         if (nbRemainingAliens == 0) {
+            animation.stop();
             controller.gameOver("Vous avez vaincu les aliens !");
         }
     }
