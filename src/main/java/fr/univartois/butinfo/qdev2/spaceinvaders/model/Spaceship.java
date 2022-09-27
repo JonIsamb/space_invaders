@@ -16,4 +16,8 @@ public class Spaceship extends AbstractMovable {
         super(game, xPosition, yPosition, sprite);
     }
 
+    @Override
+    public void collidedWith(IMovable other) {
+        return ;
+    }
 }
