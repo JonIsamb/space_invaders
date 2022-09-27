@@ -14,4 +14,14 @@ public class Shot extends AbstractMovable {
     public void collidedWith(IMovable other) {
 
     }
+
+    @Override
+    public boolean move(long delta) {
+        if (super.move(delta)) {
+            return true;
+        } else {
+            game.removeMovable(this);
+            return false;
+        }
+    }
 }
