@@ -1,5 +1,5 @@
 /**
- * Ce logiciel est distribué à des fins éducatives.
+  * Ce logiciel est distribué à des fins éducatives.
  *
  * Il est fourni "tel quel", sans garantie d’aucune sorte, explicite
  * ou implicite, notamment sans garantie de qualité marchande, d’adéquation
@@ -261,6 +261,13 @@ public final class SpaceInvadersGame {
      * Cette méthode est sans effet si le délai entre deux tirs n'est pas atteint.
      */
     public void fireShot() {
+        long ecouler = (System.currentTimeMillis() - this.lastShot);
+        if (SHOT_TEMPORIZATION<ecouler) {
+            IMovable shot = factory.createShot(ship.getWidth(), ship.getHeight());
+            this.lastShot = System.currentTimeMillis();
+            addMovable(shot);
+        }
+        
         // TODO Déclencher un tir, à condition que le délai ait été respecté.
     }
 
