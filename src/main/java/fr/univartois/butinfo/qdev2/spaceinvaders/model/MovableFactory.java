@@ -20,7 +20,7 @@ public class MovableFactory implements IMovableFactory{
     
     ISpriteStore SpriteStore;
     
-    SpaceInvadersGame Game;
+    SpaceInvadersGame game;
 
     /*
      * (non-Javadoc)
@@ -29,8 +29,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public void setSpriteStore(ISpriteStore spriteStore) {
-        // TODO Auto-generated method stub.
-        
+        this.SpriteStore = spriteStore;
     }
 
     /*
@@ -40,8 +39,49 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public void setGame(SpaceInvadersGame game) {
-        // TODO Auto-generated method stub.
-        
+        this.game = game;
+    }
+
+    /**
+     * Crée un nouvel objet pouvant se déplacer et représentant un alien.
+     *
+     * @param x La position initiale de l'objet en x.
+     * @param y La position initiale de l'objet en y.
+     *
+     * @return L'alien qui a été créé.
+     */
+    @Override
+    public IMovable createAlien(int x, int y) {
+        Alien newAlien = new Alien(game, x, y, SpriteStore);
+        return newAlien;
+    }
+
+    /**
+     * Crée un nouvel objet pouvant se déplacer et représentant un vaisseau (allié).
+     *
+     * @param x La position initiale de l'objet en x.
+     * @param y La position initiale de l'objet en y.
+     *
+     * @return Le vaisseau qui a été créé.
+     */
+    @Override
+    public IMovable createShip(int x, int y) {
+        Ship newShip = new SpaceShip(game, x, y, SpriteStore);
+        return newShip;
+    }
+
+    /**
+     * Crée un nouvel objet pouvant se déplacer et représentant un tir.
+     *
+     * @param x La position initiale de l'objet en x.
+     * @param y La position initiale de l'objet en y.
+     *
+     * @return Le tir qui a été créé.
+     */
+    @Override
+    public IMovable createShot(int x, int y) {
+        Shot newShot = new Shot(game, x, y, SpriteStore);
+        return newShot;
     }
 }
 
