@@ -16,6 +16,7 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
@@ -175,6 +176,10 @@ public interface IMovable {
      *
      * @param other L'objet avec lequel cet objet est entré en collision.
      */
-    void collidedWith(IMovable other);
+    void collidedWithAlien(IMovable other);
+
+    void collidedWithAlien(Alien alien);
+
+    void collidedWithShot(Shot shot);
 
 }

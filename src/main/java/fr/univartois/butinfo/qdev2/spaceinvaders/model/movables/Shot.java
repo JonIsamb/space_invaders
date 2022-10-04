@@ -11,8 +11,19 @@ public class Shot extends AbstractMovable {
         this.setVerticalSpeed(-300);
     }
     @Override
-    public void collidedWith(IMovable other) {
+    public void collidedWithAlien(IMovable other) {
         game.removeMovable(this);
+    }
+
+    @Override
+    public void collidedWithAlien(Alien alien) {
+        game.alienIsDead(alien);
+    }
+
+    @Override
+    public void collidedWithShot(Shot shot) {
+        game.removeMovable(this);
+        game.removeMovable(shot);
     }
 
     @Override
