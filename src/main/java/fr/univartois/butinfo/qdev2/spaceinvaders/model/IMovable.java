@@ -176,10 +176,10 @@ public interface IMovable {
      *
      * @param other L'objet avec lequel cet objet est entré en collision.
      */
-    void collidedWithAlien(IMovable other);
+    void collidedWith(IMovable other);
 
-    void collidedWithAlien(Alien alien);
+    void collidedWith(Alien alien);
 
-    void collidedWithShot(Shot shot);
+    void collidedWith(Shot shot);
 
 }
