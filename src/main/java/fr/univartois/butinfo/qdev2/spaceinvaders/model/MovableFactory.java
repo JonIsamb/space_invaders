@@ -21,6 +21,11 @@ public class MovableFactory implements IMovableFactory{
     ISpriteStore SpriteStore;
     
     SpaceInvadersGame game;
+    
+    /**
+     * Crée une nouvelle instance de MovableFactory.
+     */
+    public MovableFactory() {}
 
     /*
      * (non-Javadoc)
@@ -52,9 +57,10 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createAlien(int x, int y) {
-        Alien newAlien = new Alien(game, x, y, SpriteStore);
-        return newAlien;
+        Alien alien = new Alien(game, x, y, SpriteStore);
+        return alien;
     }
+
 
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un vaisseau (allié).
@@ -66,8 +72,8 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShip(int x, int y) {
-        Ship newShip = new SpaceShip(game, x, y, SpriteStore);
-        return newShip;
+        Ship ship = new Ship(game, x, y, SpriteStore);
+        return ship;
     }
 
     /**
@@ -80,8 +86,8 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShot(int x, int y) {
-        Shot newShot = new Shot(game, x, y, SpriteStore);
-        return newShot;
+        Shot shot = new Shot(game, x, y, SpriteStore);
+        return shot;
     }
 }
 
