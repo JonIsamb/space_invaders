@@ -1,6 +1,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 public class Alien  extends AbstractMovable{
@@ -42,9 +43,13 @@ public class Alien  extends AbstractMovable{
     }
 
     @Override
-    public void collidedWith(IMovable other) {
-        //todo adaopdja
-    }
+    public void collidedWith(IMovable other) { return ; }
+
+    @Override
+    public void collidedWith(Alien alien) { return ; }
+
+    @Override
+    public void collidedWith(Shot shot) { return ; }
 
 
 }

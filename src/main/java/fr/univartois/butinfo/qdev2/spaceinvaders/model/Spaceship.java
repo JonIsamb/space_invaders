@@ -19,15 +19,15 @@ public class Spaceship extends AbstractMovable {
     }
 
     @Override
-    public void collidedWithAlien(IMovable other) { return; }
+    public void collidedWith(IMovable other) { return; }
 
     @Override
-    public void collidedWithAlien(Alien alien) {
+    public void collidedWith(Alien alien) {
         game.playerIsDead();
     }
 
     @Override
-    public void collidedWithShot(Shot shot) {
+    public void collidedWith(Shot shot) {
         game.reducePlayerLife();
     }
 }

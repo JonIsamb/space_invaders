@@ -90,8 +90,8 @@ final class SpaceInvadersAnimation extends AnimationTimer {
             for (IMovable other : movableObjects) {
                 if ((movable != other) && movable.isCollidingWith(other)) {
                     // On informe les deux objets qu'ils sont entrés en collision.
-                    movable.collidedWithAlien(other);
-                    other.collidedWithAlien(movable);
+                    movable.collidedWith(other);
+                    other.collidedWith(movable);
                 }
             }
         }
