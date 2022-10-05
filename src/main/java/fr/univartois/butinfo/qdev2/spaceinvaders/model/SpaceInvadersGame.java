@@ -319,7 +319,7 @@ public final class SpaceInvadersGame {
     public void alienReachedPlanet() {
         if(ship.getY()<=getBottomLimit()) {
             animation.stop();
-            controller.gameOver("Les aliens ont totalement envahi la planète, vous avez perdu!");
+            controller.gameOver("Les aliens ont envahi la planète, vous avez perdu!");
 
         }
     }
