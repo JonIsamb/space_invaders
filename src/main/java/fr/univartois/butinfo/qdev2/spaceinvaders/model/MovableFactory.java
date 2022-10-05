@@ -7,7 +7,10 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import javafx.scene.image.Image;
 
 /**
  * Le type MovableFactory
@@ -57,7 +60,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createAlien(int x, int y) {
-        Alien alien = new Alien(game, x, y, SpriteStore);
+        Alien alien = new Alien(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/alien.png")));
         return alien;
     }
 
@@ -72,7 +75,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShip(int x, int y) {
-        Ship ship = new Ship(game, x, y, SpriteStore);
+        Spaceship ship = new Spaceship(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/ship.png")));
         return ship;
     }
 
@@ -86,7 +89,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShot(int x, int y) {
-        Shot shot = new Shot(game, x, y, SpriteStore);
+        Shot shot = new Shot(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/shot.png")));
         return shot;
     }
 }
