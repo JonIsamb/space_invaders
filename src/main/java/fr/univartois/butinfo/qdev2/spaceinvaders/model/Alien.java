@@ -15,16 +15,8 @@ public class Alien  extends AbstractMovable{
      */
     protected Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-    }
-
-    @Override
-    public void setHorizontalSpeed(double speed) {
-        speed = 75;
-    }
-
-    @Override
-    public void setVerticalSpeed(double speed) {
-        speed = 1;
+        this.setHorizontalSpeed(75);
+        this.setVerticalSpeed(1);
     }
 
     @Override
