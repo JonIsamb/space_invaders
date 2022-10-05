@@ -21,7 +21,7 @@ import javafx.scene.image.Image;
  */
 public class MovableFactory implements IMovableFactory{
     
-    ISpriteStore SpriteStore;
+    ISpriteStore spriteStore;
     
     SpaceInvadersGame game;
     
@@ -37,7 +37,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public void setSpriteStore(ISpriteStore spriteStore) {
-        this.SpriteStore = spriteStore;
+        this.spriteStore = spriteStore;
     }
 
     /*
@@ -60,7 +60,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createAlien(int x, int y) {
-        Alien alien = new Alien(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/alien.png")));
+        Alien alien = new Alien(game, x, y, spriteStore.getSprite("alien"));
         return alien;
     }
 
@@ -75,7 +75,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShip(int x, int y) {
-        Spaceship ship = new Spaceship(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/ship.png")));
+        Spaceship ship = new Spaceship(game, x, y, spriteStore.getSprite("ship"));
         return ship;
     }
 
@@ -89,7 +89,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShot(int x, int y) {
-        Shot shot = new Shot(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/shot.png")));
+        Shot shot = new Shot(game, x, y, spriteStore.getSprite("shot"));
         return shot;
     }
 }
