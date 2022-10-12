@@ -237,7 +237,7 @@ public final class SpaceInvadersGame {
 
         IMovable alien1 = this.factory.createAlien(0, getTopLimit());
         IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit());
-        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*2, getTopLimit());
+        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit());
         addMovable(alien1);
         addMovable(alien2);
         addMovable(alien3);
@@ -272,7 +272,7 @@ public final class SpaceInvadersGame {
     public void fireShot() {
         long ecouler = (System.currentTimeMillis() - this.lastShot);
         if (SHOT_TEMPORIZATION<ecouler) {
-            IMovable shot = factory.createShot(ship.getWidth(), ship.getHeight());
+            IMovable shot = factory.createShot( ship.getX() + (ship.getWidth() / 3),  ship.getY() - (ship.getHeight() + 2));
             this.lastShot = System.currentTimeMillis();
             addMovable(shot);
         }
@@ -309,7 +309,7 @@ public final class SpaceInvadersGame {
     public void playerIsDead() {
         if(life.get()==0) {
             animation.stop();
-            controller.gameOver("Vous êtes morts, Dommage!!");
+            controller.gameOver("Vous etes morts, Dommage!!");
         }
     }
 
@@ -317,9 +317,9 @@ public final class SpaceInvadersGame {
      * Termine la partie lorsque les aliens atteignent la planète.
      */
     public void alienReachedPlanet() {
-        if(ship.getY()<=getBottomLimit()) {
+        if((ship.getY() + ship.getHeight())<=getBottomLimit()) {
             animation.stop();
-            controller.gameOver("Les aliens ont envahi la planète, vous avez perdu!");
+            controller.gameOver("Les aliens ont envahi la planete, vous avez perdu!");
 
         }
     }

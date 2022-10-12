@@ -16,7 +16,7 @@ public class Alien  extends AbstractMovable{
     protected Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(75);
-        this.setVerticalSpeed(1);
+        this.setVerticalSpeed(50);
     }
 
 
@@ -24,15 +24,15 @@ public class Alien  extends AbstractMovable{
     public boolean move(long delta) {
 
         if(!super.move(delta)) {
-            setVerticalSpeed(getVerticalSpeed() * 1.02);
-            this.setHorizontalSpeed(-getHorizontalSpeed());
+            if (getY()+this.getHeight() >= game.getBottomLimit()) {
+                game.alienReachedPlanet();
+            }else{
+                setVerticalSpeed(getVerticalSpeed() * 1.02);
+                this.setHorizontalSpeed(-getHorizontalSpeed());
+            }
             return false;
         }
 
-        if (getY()+this.getHeight() >= game.getBottomLimit()) {
-            game.alienReachedPlanet();
-            return false;
-        }
         return true;
     }
 
