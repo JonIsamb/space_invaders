@@ -237,7 +237,7 @@ public final class SpaceInvadersGame {
 
         IMovable alien1 = this.factory.createAlien(0, getTopLimit());
         IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit());
-        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*2, getTopLimit());
+        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit());
         addMovable(alien1);
         addMovable(alien2);
         addMovable(alien3);
