@@ -272,9 +272,6 @@ public final class SpaceInvadersGame {
     public void fireShot() {
         long ecouler = (System.currentTimeMillis() - this.lastShot);
         if (SHOT_TEMPORIZATION<ecouler) {
-            System.out.println(ship.getX());
-            System.out.println(ship.getY());
-
             IMovable shot = factory.createShot( ship.getX() + (ship.getWidth() / 3),  ship.getY() - (ship.getHeight() + 2));
             this.lastShot = System.currentTimeMillis();
             addMovable(shot);
