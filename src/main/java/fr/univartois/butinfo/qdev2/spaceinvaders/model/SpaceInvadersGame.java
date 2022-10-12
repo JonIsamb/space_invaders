@@ -311,7 +311,7 @@ public final class SpaceInvadersGame {
     public void playerIsDead() {
         if(life.get()==0) {
             animation.stop();
-            controller.gameOver("Vous êtes morts, Dommage!!");
+            controller.gameOver("Vous etes morts, Dommage!!");
         }
     }
 
@@ -319,9 +319,9 @@ public final class SpaceInvadersGame {
      * Termine la partie lorsque les aliens atteignent la planète.
      */
     public void alienReachedPlanet() {
-        if(ship.getY()<=getBottomLimit()) {
+        if((ship.getY() + ship.getHeight())<=getBottomLimit()) {
             animation.stop();
-            controller.gameOver("Les aliens ont totalement envahi la planète, vous avez perdu!");
+            controller.gameOver("Les aliens ont envahi la planete, vous avez perdu!");
 
         }
     }
