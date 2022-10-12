@@ -1,7 +1,7 @@
-package fr.univartois.butinfo.qdev2.spaceinvaders.model;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.AbstractMovable;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 public class Alien  extends AbstractMovable{
@@ -37,13 +37,15 @@ public class Alien  extends AbstractMovable{
     }
 
     @Override
-    public void collidedWith(IMovable other) { return ; }
+    public void collidedWith(IMovable other) { other.collidedWith(this); }
 
     @Override
     public void collidedWith(Alien alien) { return ; }
 
     @Override
-    public void collidedWith(Shot shot) { return ; }
+    public void collidedWith(Shot shot) {
+        game.alienIsDead(this);
+    }
 
 
 }
