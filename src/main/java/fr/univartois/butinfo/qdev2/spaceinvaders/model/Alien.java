@@ -24,6 +24,7 @@ public class Alien  extends AbstractMovable{
 
         if(!super.move(delta)) {
             setVerticalSpeed(getVerticalSpeed() * 1.02);
+            this.setHorizontalSpeed(-getHorizontalSpeed());
             return false;
         }
 
