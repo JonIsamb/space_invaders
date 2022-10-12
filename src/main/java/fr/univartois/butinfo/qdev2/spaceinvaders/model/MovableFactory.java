@@ -7,10 +7,10 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
-import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
-import javafx.scene.image.Image;
 
 /**
  * Le type MovableFactory
