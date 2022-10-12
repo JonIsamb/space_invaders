@@ -13,7 +13,7 @@ public class Alien  extends AbstractMovable{
      * @param yPosition La position en y initiale de l'objet.
      * @param sprite    L'instance de {@link Sprite} représentant l'objet.
      */
-    protected Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
+    public Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(75);
         this.setVerticalSpeed(50);
@@ -43,9 +43,7 @@ public class Alien  extends AbstractMovable{
     public void collidedWith(Alien alien) { return ; }
 
     @Override
-    public void collidedWith(Shot shot) {
-        game.alienIsDead(this);
-    }
+    public void collidedWith(Shot shot) { return ; }
 
 
 }
