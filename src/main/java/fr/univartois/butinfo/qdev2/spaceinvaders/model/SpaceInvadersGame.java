@@ -19,6 +19,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -309,10 +310,8 @@ public final class SpaceInvadersGame {
      * Termine la partie lorsque le joueur est tué.
      */
     public void playerIsDead() {
-        if(life.get()==0) {
-            animation.stop();
-            controller.gameOver("Vous etes morts, Dommage!!");
-        }
+        animation.stop();
+        controller.gameOver("Vous etes morts, Dommage!!");
     }
 
     /**
