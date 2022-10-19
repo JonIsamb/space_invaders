@@ -1,11 +1,11 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
-public class AlienCounterAttack implements IStrategy
+public class ShotLevel1 implements IStrategy
 {
 
     @Override
-    public void counterAttack(IMovable alien) {
-
+    public boolean counterAttack(IMovable alien) {
+        return false;
     }
 
 

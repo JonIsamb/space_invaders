@@ -1,6 +1,6 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
-public interface IStrategyLevel2 {
+public interface IStrategyLevel3 {
 
-    boolean counterAttackLevel2(IMovable alien);
+    boolean counterAttackLevel3(IMovable alien);
 }
