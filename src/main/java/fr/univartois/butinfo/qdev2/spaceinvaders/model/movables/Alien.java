@@ -3,6 +3,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves1Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves2Strategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -19,28 +20,30 @@ public class Alien  extends AbstractMovable{
      */
     public Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
-        this.setHorizontalSpeed(75);
-        this.setVerticalSpeed(50);
-        this.strategy = new AlienMoves1Strategy();
+        this.setHorizontalSpeed(200);
+        this.setVerticalSpeed(30);
+        this.strategy = new AlienMoves2Strategy();
     }
 
-
-    public boolean move(long delta, IAlienMovesStrategy strategy) {
+    @Override
+    public boolean move(long delta) {
 
         if(!super.move(delta)) {
             if (getY()+this.getHeight() >= game.getBottomLimit()) {
                 game.alienReachedPlanet();
             }else{
-                update(strategy, this);
+                update(strategy, this, true);
             }
             return false;
+        } else {
+            update(strategy, this, false);
         }
 
         return true;
     }
 
-    private void update(IAlienMovesStrategy strategy, Alien alien) {
-        strategy.update(alien);
+    private void update(IAlienMovesStrategy strategy, Alien alien, boolean contactWithBorder) {
+        strategy.update(alien, contactWithBorder);
     }
 
     @Override
