@@ -4,6 +4,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves1Strategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves2Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves3Strategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -22,7 +23,7 @@ public class Alien  extends AbstractMovable{
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(200);
         this.setVerticalSpeed(30);
-        this.strategy = new AlienMoves2Strategy();
+        this.strategy = new AlienMoves3Strategy();
     }
 
     @Override
