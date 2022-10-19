@@ -65,7 +65,7 @@ public final class SpaceInvaders extends Application {
         // On crée ensuite le jeu, que l'on lie au contrôleur.
         MovableFactory factory = new MovableFactory();
         SpaceInvadersGame game = new SpaceInvadersGame(
-                GAME_WIDTH, GAME_HEIGHT, new SpriteStore(), factory);
+                GAME_WIDTH, GAME_HEIGHT, SpriteStore.getInstance(), factory);
         factory.setGame(game);
         controller.setGame(game);
         game.setController(controller);
