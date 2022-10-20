@@ -16,10 +16,16 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves1Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves2Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves3Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -235,10 +241,22 @@ public final class SpaceInvadersGame {
         //Spaceship ship = new Spaceship(this, );
         this.ship = this.factory.createShip(getRightLimit(), getBottomLimit());
         addMovable(this.ship);
+        ArrayList<IAlienMovesStrategy> strategies = new ArrayList<>();
+        strategies.add(new AlienMoves1Strategy());
+        strategies.add(new AlienMoves2Strategy());
+        strategies.add(new AlienMoves3Strategy());
 
-        IMovable alien1 = this.factory.createAlien(0, getTopLimit());
-        IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit());
-        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit());
+        Collections.shuffle(strategies);
+        IAlienMovesStrategy strategy = strategies.get(0);
+        IMovable alien1 = this.factory.createAlien(0, getTopLimit(), strategy);
+
+        Collections.shuffle(strategies);
+        strategy = strategies.get(0);
+        IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit(), strategy);
+
+        Collections.shuffle(strategies);
+        strategy = strategies.get(0);
+        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit(), strategy);
         addMovable(alien1);
         addMovable(alien2);
         addMovable(alien3);

@@ -19,11 +19,11 @@ public class Alien  extends AbstractMovable{
      * @param yPosition La position en y initiale de l'objet.
      * @param sprite    L'instance de {@link Sprite} représentant l'objet.
      */
-    public Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
+    public Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, IAlienMovesStrategy strategy) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(200);
         this.setVerticalSpeed(30);
-        this.strategy = new AlienMoves3Strategy();
+        this.strategy = strategy;
     }
 
     @Override
