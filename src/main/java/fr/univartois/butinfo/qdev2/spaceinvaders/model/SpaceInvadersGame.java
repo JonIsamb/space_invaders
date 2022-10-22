@@ -22,10 +22,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves1Strategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves2Strategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves3Strategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.*;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -245,6 +242,7 @@ public final class SpaceInvadersGame {
         strategies.add(new AlienMoves1Strategy());
         strategies.add(new AlienMoves2Strategy());
         strategies.add(new AlienMoves3Strategy());
+        strategies.add(new AlienMoves4Strategy());
 
         Collections.shuffle(strategies);
         IAlienMovesStrategy strategy = strategies.get(0);
@@ -257,6 +255,7 @@ public final class SpaceInvadersGame {
         Collections.shuffle(strategies);
         strategy = strategies.get(0);
         IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit(), strategy);
+
         addMovable(alien1);
         addMovable(alien2);
         addMovable(alien3);
