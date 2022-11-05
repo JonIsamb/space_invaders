@@ -10,6 +10,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 
 /**
@@ -59,8 +60,8 @@ public class MovableFactory implements IMovableFactory{
      * @return L'alien qui a été créé.
      */
     @Override
-    public IMovable createAlien(int x, int y) {
-        Alien alien = new Alien(game, x, y, spriteStore.getSprite("alien"));
+    public IMovable createAlien(int x, int y, IAlienMovesStrategy strategy) {
+        Alien alien = new Alien(game, x, y, spriteStore.getSprite("alien"), strategy);
         return alien;
     }
 

@@ -2,9 +2,15 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves1Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves2Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves3Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 public class Alien  extends AbstractMovable{
+    public IAlienMovesStrategy strategy;
+
     /**
      * Crée une nouvelle instance de AbstractMovable.
      *
@@ -13,12 +19,12 @@ public class Alien  extends AbstractMovable{
      * @param yPosition La position en y initiale de l'objet.
      * @param sprite    L'instance de {@link Sprite} représentant l'objet.
      */
-    public Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
+    public Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, IAlienMovesStrategy strategy) {
         super(game, xPosition, yPosition, sprite);
-        this.setHorizontalSpeed(75);
-        this.setVerticalSpeed(50);
+        this.setHorizontalSpeed(200);
+        this.setVerticalSpeed(30);
+        this.strategy = strategy;
     }
-
 
     @Override
     public boolean move(long delta) {
@@ -27,13 +33,18 @@ public class Alien  extends AbstractMovable{
             if (getY()+this.getHeight() >= game.getBottomLimit()) {
                 game.alienReachedPlanet();
             }else{
-                setVerticalSpeed(getVerticalSpeed() * 1.02);
-                this.setHorizontalSpeed(-getHorizontalSpeed());
+                update(strategy, this, true);
             }
             return false;
+        } else {
+            update(strategy, this, false);
         }
 
         return true;
+    }
+
+    private void update(IAlienMovesStrategy strategy, Alien alien, boolean contactWithBorder) {
+        strategy.update(alien, contactWithBorder);
     }
 
     @Override
