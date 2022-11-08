@@ -5,6 +5,28 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 public class Alien  extends AbstractMovable{
+
+
+    /*
+    * Attribut pour l'alien qui tire au niveau 1
+    * (ne peut pas tirer).
+     */
+    private IStrategy strategyLevel1;
+
+    /*
+     * Attribut pour l'alien qui tire au niveau 2
+
+     */
+    private IStrategyLevel2 strategyLevel2;
+
+
+    /*
+     * Attribut pour l'alien qui tire au niveau 2
+
+     */
+    private IStrategyLevel3 strategyLevel3;
+
+
     /**
      * Crée une nouvelle instance de AbstractMovable.
      *
@@ -16,8 +38,7 @@ public class Alien  extends AbstractMovable{
     protected Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(75);
-        this.setVerticalSpeed(1);
-    }
+        this.setVerticalSpeed(1
 
 
     @Override

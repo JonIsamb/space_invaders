@@ -12,6 +12,8 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.scene.image.Image;
 
+import java.util.Random;
+
 /**
  * Le type MovableFactory
  *
@@ -21,14 +23,25 @@ import javafx.scene.image.Image;
  */
 public class MovableFactory implements IMovableFactory{
     
-    ISpriteStore SpriteStore;
+    ISpriteStore spriteStore;
     
     SpaceInvadersGame game;
+
+    ShotLevel1 shotLevel1;
+
+    ShotLevel2 shotLevel2;
+
+
+    ShotLevel3 shotLevel3;
+
+
     
     /**
      * Crée une nouvelle instance de MovableFactory.
      */
     public MovableFactory() {}
+
+
 
     /*
      * (non-Javadoc)
@@ -37,7 +50,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public void setSpriteStore(ISpriteStore spriteStore) {
-        this.SpriteStore = spriteStore;
+        this.spriteStore = spriteStore;
     }
 
     /*
@@ -50,6 +63,8 @@ public class MovableFactory implements IMovableFactory{
         this.game = game;
     }
 
+
+
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un alien.
      *
@@ -58,13 +73,22 @@ public class MovableFactory implements IMovableFactory{
      *
      * @return L'alien qui a été créé.
      */
-    @Override
+
     public IMovable createAlien(int x, int y) {
-        Alien alien = new Alien(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/alien.png")));
+        IMovable alien = new Alien(game, x, y, spriteStore.getSprite("alien"));
+
         return alien;
     }
 
 
+    public boolean counterAttack(IMovable alien) {
+        return shotLevel1.counterAttack(alien);
+    }
+    public boolean counterAttacklvl3(IMovable alien) {
+        return shotLevel3.counterAttackLevel3(alien);
+    }
+
+    public boolean counterAttacklvl2(IMovable alien) {return shotLevel2.counterAttackLevel2(alien);}
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un vaisseau (allié).
      *
@@ -75,7 +99,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShip(int x, int y) {
-        Spaceship ship = new Spaceship(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/ship.png")));
+        IMovable ship = new Spaceship(game, x, y, spriteStore.getSprite("ship"));
         return ship;
     }
 
@@ -89,7 +113,8 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShot(int x, int y) {
-        Shot shot = new Shot(game, x, y, new Sprite(new Image("src/main/resources/fr/univartois/butinfo/qdev2/spaceinvaders/view/sprites/shot.png")));
+        IMovable shot = new Shot(game, x, y,spriteStore.getSprite("shot"));
+
         return shot;
     }
 }

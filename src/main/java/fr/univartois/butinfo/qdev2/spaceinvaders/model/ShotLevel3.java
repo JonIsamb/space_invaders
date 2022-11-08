@@ -1,12 +1,22 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
-public class ShotLevel1 implements IStrategy
+import java.util.Random;
+
+public class ShotLevel3 implements IStrategyLevel3
 {
 
+    private IMovableFactory movable;
+
+    protected static int CONSTANTE = 75;
+
     @Override
-    public boolean counterAttack(IMovable alien) {
-        return false;
+    public boolean counterAttackLevel3(IMovable alien) {
+        Random r = new Random();
+        new Random(r.nextInt(101));
+        if (r.nextInt()>CONSTANTE ){
+            movable.createShot(alien.getX()+ alien.getHeight(), alien.getY()+ alien.getHeight());
+            return true;
+        }
+            return false;
     }
-
-
 }
