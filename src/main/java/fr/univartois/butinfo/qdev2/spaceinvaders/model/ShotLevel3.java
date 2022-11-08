@@ -2,7 +2,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import java.util.Random;
 
-public class ShotLevel3 implements IStrategyLevel3
+public class ShotLevel3 implements IStrategy
 {
 
     private IMovableFactory movable;
@@ -10,7 +10,7 @@ public class ShotLevel3 implements IStrategyLevel3
     protected static int CONSTANTE = 75;
 
     @Override
-    public boolean counterAttackLevel3(IMovable alien) {
+    public boolean counterAttack(IMovable alien) {
         Random r = new Random();
         new Random(r.nextInt(101));
         if (r.nextInt()>CONSTANTE ){

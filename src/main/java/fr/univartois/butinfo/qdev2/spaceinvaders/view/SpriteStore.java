@@ -32,6 +32,7 @@ import javafx.scene.image.Image;
  * @version 0.1.0
  */
 public final class SpriteStore implements ISpriteStore {
+    private static final SpriteStore instance = new SpriteStore();
 
     /**
      * La {@link Map} permettant de conserver en cache les différentes instances de
@@ -77,6 +78,12 @@ public final class SpriteStore implements ISpriteStore {
         } catch (NullPointerException | IllegalArgumentException e) {
             throw new NoSuchElementException("Could not load image " + name, e);
         }
+    }
+
+    private SpriteStore() {}
+
+    public static SpriteStore getInstance() {
+        return instance;
     }
 
 }

@@ -7,10 +7,12 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves4Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
-import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
-import javafx.scene.image.Image;
 
 import java.util.Random;
 
@@ -24,7 +26,8 @@ import java.util.Random;
 public class MovableFactory implements IMovableFactory{
     
     ISpriteStore spriteStore;
-    
+
+    IStrategy strategy;
     SpaceInvadersGame game;
 
     ShotLevel1 shotLevel1;
@@ -39,7 +42,7 @@ public class MovableFactory implements IMovableFactory{
     /**
      * Crée une nouvelle instance de MovableFactory.
      */
-    public MovableFactory() {}
+    public MovableFactory() { /* TODO document why this constructor is empty */ }
 
 
 
@@ -65,6 +68,7 @@ public class MovableFactory implements IMovableFactory{
 
 
 
+
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un alien.
      *
@@ -74,21 +78,19 @@ public class MovableFactory implements IMovableFactory{
      * @return L'alien qui a été créé.
      */
 
+    @Override
     public IMovable createAlien(int x, int y) {
-        IMovable alien = new Alien(game, x, y, spriteStore.getSprite("alien"));
+        return new Alien(game, x, y, spriteStore.getSprite("alien"), new AlienMoves4Strategy(),new ShotLevel2());
 
-        return alien;
     }
 
 
     public boolean counterAttack(IMovable alien) {
-        return shotLevel1.counterAttack(alien);
-    }
-    public boolean counterAttacklvl3(IMovable alien) {
-        return shotLevel3.counterAttackLevel3(alien);
+        return strategy.counterAttack(alien);
     }
 
-    public boolean counterAttacklvl2(IMovable alien) {return shotLevel2.counterAttackLevel2(alien);}
+
+
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un vaisseau (allié).
      *
@@ -99,8 +101,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShip(int x, int y) {
-        IMovable ship = new Spaceship(game, x, y, spriteStore.getSprite("ship"));
-        return ship;
+        return new Spaceship(game, x, y, spriteStore.getSprite("ship"));
     }
 
     /**
@@ -113,9 +114,7 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShot(int x, int y) {
-        IMovable shot = new Shot(game, x, y,spriteStore.getSprite("shot"));
-
-        return shot;
+        return new Shot(game, x, y,spriteStore.getSprite("shot"));
     }
 }
 

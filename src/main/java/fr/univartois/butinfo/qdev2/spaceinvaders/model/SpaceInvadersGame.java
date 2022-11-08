@@ -16,9 +16,13 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.*;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
@@ -234,10 +238,24 @@ public final class SpaceInvadersGame {
         //Spaceship ship = new Spaceship(this, );
         this.ship = this.factory.createShip(getRightLimit(), getBottomLimit());
         addMovable(this.ship);
+        ArrayList<IAlienMovesStrategy> strategies = new ArrayList<>();
+        strategies.add(new AlienMoves1Strategy());
+        strategies.add(new AlienMoves2Strategy());
+        strategies.add(new AlienMoves3Strategy());
+        strategies.add(new AlienMoves4Strategy());
 
+        Collections.shuffle(strategies);
+        IAlienMovesStrategy strategy = strategies.get(0);
         IMovable alien1 = this.factory.createAlien(0, getTopLimit());
+
+        Collections.shuffle(strategies);
+        strategy = strategies.get(0);
         IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit());
-        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*2, getTopLimit());
+
+        Collections.shuffle(strategies);
+        strategy = strategies.get(0);
+        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit());
+
         addMovable(alien1);
         addMovable(alien2);
         addMovable(alien3);
@@ -271,12 +289,18 @@ public final class SpaceInvadersGame {
      */
     public void fireShot() {
         long ecouler = (System.currentTimeMillis() - this.lastShot);
-        if (SHOT_TEMPORIZATION<ecouler) {
-            IMovable shot = factory.createShot(ship.getWidth(), ship.getHeight());
+        if (SHOT_TEMPORIZATION < ecouler) {
+            IMovable shot = factory.createShot( ship.getX() + (ship.getWidth() / 3),  ship.getY() - (ship.getHeight() + 2));
             this.lastShot = System.currentTimeMillis();
             addMovable(shot);
         }
     }
+
+    public void fireShotAlien(IMovable alien){
+        IMovable shotAlien = factory.createShot(alien.getX()+alien.getHeight(), alien.getY()+alien.getHeight());
+        addMovable(shotAlien);
+    }
+
 
     /**
      * Met à jour le score du joueur lorsqu'un alien est tué.
@@ -286,9 +310,11 @@ public final class SpaceInvadersGame {
      */
     public void alienIsDead(IMovable alien) {
         nbRemainingAliens--;
+        this.removeMovable(alien);
         if (nbRemainingAliens == 0) {
             animation.stop();
             controller.gameOver("Vous avez vaincu les aliens !");
+
         }
     }
 
@@ -307,19 +333,17 @@ public final class SpaceInvadersGame {
      * Termine la partie lorsque le joueur est tué.
      */
     public void playerIsDead() {
-        if(life.get()==0) {
-            animation.stop();
-            controller.gameOver("Vous êtes morts, Dommage!!");
-        }
+        animation.stop();
+        controller.gameOver("Vous etes morts, Dommage!!");
     }
 
     /**
      * Termine la partie lorsque les aliens atteignent la planète.
      */
     public void alienReachedPlanet() {
-        if(ship.getY()<=getBottomLimit()) {
+        if((ship.getY() + ship.getHeight())<=getBottomLimit()) {
             animation.stop();
-            controller.gameOver("Les aliens ont envahi la planète, vous avez perdu!");
+            controller.gameOver("Les aliens ont envahi la planete, vous avez perdu!");
 
         }
     }
@@ -353,5 +377,7 @@ public final class SpaceInvadersGame {
         }
         movableObjects.clear();
     }
+
+
 
 }
