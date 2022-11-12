@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.*;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
@@ -240,9 +241,9 @@ public final class SpaceInvadersGame {
         addMovable(this.ship);
         ArrayList<IAlienMovesStrategy> strategies = new ArrayList<>();
         strategies.add(new AlienMoves1Strategy());
-        strategies.add(new AlienMoves2Strategy());
-        strategies.add(new AlienMoves3Strategy());
-        strategies.add(new AlienMoves4Strategy());
+        //strategies.add(new AlienMoves2Strategy());
+        //strategies.add(new AlienMoves3Strategy());
+        //strategies.add(new AlienMoves4Strategy());
 
         Collections.shuffle(strategies);
         IAlienMovesStrategy strategy = strategies.get(0);
@@ -256,9 +257,15 @@ public final class SpaceInvadersGame {
         strategy = strategies.get(0);
         IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit(), strategy);
 
-        addMovable(alien1);
-        addMovable(alien2);
-        addMovable(alien3);
+        /**
+         * QUESTION CREATION ESCADRILLE + STRATEGIE ESCADRILLE
+        Escadrille escadrille = new Escadrille(this, 0, getTopLimit(), spriteStore.getSprite("alien"), new AlienMoves1Strategy());
+        escadrille.addAlien((Alien) alien1);
+        escadrille.addAlien((Alien) alien2);
+        escadrille.addAlien((Alien) alien3);
+        addMovable(escadrille);
+         **/
+
         this.nbRemainingAliens += 3;
     }
 

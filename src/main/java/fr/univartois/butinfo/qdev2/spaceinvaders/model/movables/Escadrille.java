@@ -24,25 +24,33 @@ public class Escadrille extends AbstractMovable {
      * @param yPosition La position en y initiale de l'objet.
      * @param sprite    L'instance de {@link Sprite} représentant l'objet.
      */
-    protected Escadrille(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, IAlienMovesStrategy strategy) {
+    public Escadrille(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, IAlienMovesStrategy strategy) {
         super(game, xPosition, yPosition, sprite);
         this.strategy = strategy;
     }
 
+    public void addAlien(Alien alien){
+        this.aliens.add(alien);
+    }
+
     @Override
     public boolean move(long delta){
-        boolean reachLimit = false;
+        boolean contactWithBorder = false;
         for(Alien alien : aliens){
             if (!alien.move(delta)) {
-                reachLimit = true;
+                contactWithBorder = true;
             }
         }
-        if (reachLimit) {
+        if (contactWithBorder) {
             for(Alien alien : aliens){
                 update(strategy, alien, true);
             }
+        } else {
+            for(Alien alien : aliens){
+                update(strategy, alien, false);
+            }
         }
-        return reachLimit;
+        return contactWithBorder;
     }
 
     private void update(IAlienMovesStrategy strategy, Alien alien, boolean contactWithBorder) {
