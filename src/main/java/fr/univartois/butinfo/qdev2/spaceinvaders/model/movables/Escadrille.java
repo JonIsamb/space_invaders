@@ -12,6 +12,8 @@ public class Escadrille extends AbstractMovable {
 
     private List<Alien> aliens = new ArrayList<>();
 
+    private Alien alienHit;
+
     private IAlienMovesStrategy strategy;
 
     /**
@@ -51,6 +53,7 @@ public class Escadrille extends AbstractMovable {
     public boolean isCollidingWith(IMovable other){
         for(Alien alien : aliens){
             if (alien.isCollidingWith(other)){
+                this.alienHit = alien;
                 return true;
             }
         }
@@ -59,16 +62,14 @@ public class Escadrille extends AbstractMovable {
 
     @Override
     public void collidedWith(IMovable other) {
-
+        aliens.remove(alienHit);
+        alienHit.collidedWith(other);
+        this.alienHit = null;
     }
 
     @Override
-    public void collidedWith(Alien alien) {
-
-    }
+    public void collidedWith(Alien alien) {}
 
     @Override
-    public void collidedWith(Shot shot) {
-
-    }
+    public void collidedWith(Shot shot) {}
 }
