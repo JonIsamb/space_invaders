@@ -7,7 +7,7 @@ public class ShotLevel3 implements IStrategyShot
 
     private IMovableFactory movable;
 
-    protected static int CONSTANTE = 9990;
+    protected static int CONSTANTE = 9950;
 
     @Override
     public boolean counterAttack(IMovable alien) {
