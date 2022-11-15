@@ -11,10 +11,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves4Strategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
-
-import java.util.Random;
 
 /**
  * Le type MovableFactory
@@ -27,7 +24,7 @@ public class MovableFactory implements IMovableFactory{
     
     ISpriteStore spriteStore;
 
-    IStrategy strategy;
+    IStrategyShot strategy;
     SpaceInvadersGame game;
 
     ShotLevel1 shotLevel1;
@@ -80,13 +77,8 @@ public class MovableFactory implements IMovableFactory{
 
     @Override
     public IMovable createAlien(int x, int y) {
-        return new Alien(game, x, y, spriteStore.getSprite("alien"), new AlienMoves4Strategy(),new ShotLevel2());
+        return new Alien(game, x, y, spriteStore.getSprite("alien"), new AlienMoves4Strategy(),new ShotLevel3());
 
-    }
-
-
-    public boolean counterAttack(IMovable alien) {
-        return strategy.counterAttack(alien);
     }
 
 
@@ -114,7 +106,11 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShot(int x, int y) {
-        return new Shot(game, x, y,spriteStore.getSprite("shot"));
+        return new Shot(game, x, y,spriteStore.getSprite("shot"),-300);
+    }
+    @Override
+    public IMovable createAlienShot(int x, int y) {
+        return new Shot(game, x, y,spriteStore.getSprite("shot"),300);
     }
 }
 

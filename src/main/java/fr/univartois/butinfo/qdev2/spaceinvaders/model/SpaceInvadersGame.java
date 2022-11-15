@@ -297,7 +297,9 @@ public final class SpaceInvadersGame {
     }
 
     public void fireShotAlien(IMovable alien){
-        IMovable shotAlien = factory.createShot(alien.getX()+alien.getHeight(), alien.getY()+alien.getHeight());
+
+        IMovable shotAlien = factory.createAlienShot(alien.getX()+alien.getHeight(), alien.getY()+alien.getHeight());
+        shotAlien.setY(shotAlien.getY()+shotAlien.getHeight());
         addMovable(shotAlien);
     }
 
@@ -314,7 +316,6 @@ public final class SpaceInvadersGame {
         if (nbRemainingAliens == 0) {
             animation.stop();
             controller.gameOver("Vous avez vaincu les aliens !");
-
         }
     }
 
