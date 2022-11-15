@@ -21,6 +21,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
 
 /**
  * L'interface {@link IMovable} définit le contrat des éléments du jeu capables
@@ -150,9 +151,17 @@ public interface IMovable {
      *        millisecondes).
      *
      * @return Si l'objet a pu être déplacé.
-     *         Si ce n'est pas le cas, il a atteint le bord de la fenêtre, et est donc bloqué.
+     *         Si ce n'est pas le cas, il a atteint le bord de la fenêtre, et est donc
+     *         bloqué.
      */
     boolean move(long timeDelta);
+
+    /**
+     * Modifie l'instance de {@link Sprite} représentant cet objet.
+     *
+     * @param sprite La nouvelle instance de {@link Sprite} représentant cet objet.
+     */
+    void setSprite(Sprite sprite);
 
     /**
      * Donne l'instance de {@link Sprite} représentant cet objet.
@@ -160,6 +169,13 @@ public interface IMovable {
      * @return L'instance de {@link Sprite} représentant cet objet.
      */
     Sprite getSprite();
+
+    /**
+     * Donne la propriété de cet objet correspondant au {@link Sprite} qui le représente.
+     *
+     * @return La propriété de cet objet correspondant à son {@link Sprite}.
+     */
+    ObjectProperty<Sprite> getSpriteProperty();
 
     /**
      * Vérifie si cet objet est entré en collision avec une autre instance de
@@ -182,5 +198,11 @@ public interface IMovable {
     void collidedWith(Alien alien);
 
     void collidedWith(Shot shot);
+    /**
+     * Donne l'objet réel qui implémente cette interface.
+     *
+     * @return L'objet réel.
+     */
+    IMovable self();
 
 }

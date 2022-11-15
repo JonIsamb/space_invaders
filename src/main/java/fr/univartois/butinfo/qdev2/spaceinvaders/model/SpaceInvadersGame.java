@@ -108,7 +108,7 @@ public final class SpaceInvadersGame {
     /**
      * L'animation du jeu, qui s'assure que les différents objets se déplacent.
      */
-    private final AnimationTimer animation = new SpaceInvadersAnimation(movableObjects);
+    private final AnimationTimer animation = new SpaceInvadersAnimation(this, movableObjects);
 
     /**
      * Crée une nouvelle instance de SpaceInvadersGame.
@@ -260,6 +260,13 @@ public final class SpaceInvadersGame {
         addMovable(alien2);
         addMovable(alien3);
         this.nbRemainingAliens += 3;
+    }
+
+    /**
+     * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
+     */
+    public void dropBonus() {
+        // TODO Créer le bonus.
     }
 
     /**
