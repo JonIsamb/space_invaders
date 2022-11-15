@@ -18,7 +18,6 @@ public class Shot extends AbstractMovable {
     @Override
     public void collidedWith(Alien alien) {
         game.removeMovable(this);
-        game.alienIsDead(alien);
     }
 
     @Override
