@@ -12,6 +12,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
+import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  * Le type MovableFactory
@@ -61,8 +62,9 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createAlien(int x, int y, IAlienMovesStrategy strategy) {
-        Alien alien = new Alien(game, x, y, spriteStore.getSprite("alien"), strategy);
-        return alien;
+        return new AlienPlusResistant(
+                new Alien(game, x, y, spriteStore.getSprite("alien"), strategy),
+                new SimpleIntegerProperty(2));
     }
 
 
