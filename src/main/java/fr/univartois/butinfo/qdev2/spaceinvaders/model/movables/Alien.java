@@ -58,10 +58,14 @@ public class Alien  extends AbstractMovable{
     public void collidedWith(IMovable other) { other.collidedWith(this); }
 
     @Override
-    public void collidedWith(Alien alien) { return ; }
+    public void collidedWith(Alien alien) {
+    }
 
     @Override
-    public void collidedWith(Shot shot) { return ; }
+    public void collidedWith(Shot shot) {
+        game.alienIsDead(this);
+        game.removeMovable(this);
+    }
 
 
 }
