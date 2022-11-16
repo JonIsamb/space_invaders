@@ -19,6 +19,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
@@ -240,13 +241,14 @@ public final class SpaceInvadersGame {
         addMovable(this.ship);
         ArrayList<IAlienMovesStrategy> strategies = new ArrayList<>();
         strategies.add(new AlienMoves1Strategy());
-        strategies.add(new AlienMoves2Strategy());
+        /* strategies.add(new AlienMoves2Strategy());
         strategies.add(new AlienMoves3Strategy());
-        strategies.add(new AlienMoves4Strategy());
+        strategies.add(new AlienMoves4Strategy()); */
 
         Collections.shuffle(strategies);
         IAlienMovesStrategy strategy = strategies.get(0);
-        IMovable alien1 = this.factory.createAlien(0, getTopLimit());
+
+        IMovable alien1 = this.factory.createAlien(0, getTopLimit(), strategy);
 
         Collections.shuffle(strategies);
         strategy = strategies.get(0);
@@ -266,7 +268,10 @@ public final class SpaceInvadersGame {
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
      */
     public void dropBonus() {
-        // TODO Créer le bonus.
+        Random random = new Random();
+        int x = random.nextInt(getWidth());
+        IMovable bonus = this.factory.createBonus(x, getTopLimit());
+        addMovable(bonus);
     }
 
     /**
@@ -334,6 +339,10 @@ public final class SpaceInvadersGame {
         if (life.get()==0) {
             playerIsDead();
         } 
+    }
+
+    public void addPlayerLife() {
+        life.setValue(life.get()+1);
     }
 
 

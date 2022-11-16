@@ -17,6 +17,8 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.BooleanProperty;
@@ -196,6 +198,10 @@ public interface IMovable {
     void collidedWith(IMovable other);
 
     void collidedWith(Alien alien);
+
+    void collidedWith(Bonus bonus);
+
+    void collidedWith(Spaceship spaceship);
 
     void collidedWith(Shot shot);
     /**
