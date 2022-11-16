@@ -87,7 +87,6 @@ public class MovableFactory implements IMovableFactory{
     }
 
 
-
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un vaisseau (allié).
      *

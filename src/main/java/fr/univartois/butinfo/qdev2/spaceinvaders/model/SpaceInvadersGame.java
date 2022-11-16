@@ -248,7 +248,7 @@ public final class SpaceInvadersGame {
         Collections.shuffle(strategies);
         IAlienMovesStrategy strategy = strategies.get(0);
 
-        IMovable alien1 = this.factory.createAlien(0, getTopLimit(), strategy);
+        IMovable alien1 = this.factory.createAlien(0, getTopLimit());
 
         Collections.shuffle(strategies);
         strategy = strategies.get(0);

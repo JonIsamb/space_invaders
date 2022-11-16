@@ -20,6 +20,7 @@ public class BonusLife extends Bonus {
     @Override
     public void collidedWith(Spaceship spaceship) {
         super.collidedWith(spaceship);
+
         System.out.println("ajouter vie joueur");
         //game.addPlayerLife();
     }

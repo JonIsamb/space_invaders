@@ -27,7 +27,7 @@ public class Alien  extends AbstractMovable{
         //this.setHorizontalSpeed(200);
         //this.setVerticalSpeed(30);
         this.setHorizontalSpeed(200);
-        this.setVerticalSpeed(1);
+        this.setVerticalSpeed(20);
         this.strategy = strategy;
         this.strategyShot = strategyShot;
     }
