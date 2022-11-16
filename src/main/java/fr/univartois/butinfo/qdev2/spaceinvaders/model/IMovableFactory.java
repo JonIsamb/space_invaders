@@ -54,7 +54,7 @@ public interface IMovableFactory {
      *
      * @return L'alien qui a été créé.
      */
-    IMovable createAlien(int x, int y, IAlienMovesStrategy strategy);
+    IMovable createAlien(int x, int y);
 
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un vaisseau (allié).
@@ -77,5 +77,7 @@ public interface IMovableFactory {
      * @return Le tir qui a été créé.
      */
     IMovable createShot(int x, int y);
+
+    IMovable createAlienShot(int x, int y);
 
 }
