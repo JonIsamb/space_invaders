@@ -2,9 +2,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves1Strategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves2Strategy;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves3Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -21,8 +19,10 @@ public class Alien  extends AbstractMovable{
      */
     public Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, IAlienMovesStrategy strategy) {
         super(game, xPosition, yPosition, sprite);
+        //this.setHorizontalSpeed(200);
+        //this.setVerticalSpeed(30);
         this.setHorizontalSpeed(200);
-        this.setVerticalSpeed(30);
+        this.setVerticalSpeed(1);
         this.strategy = strategy;
     }
 
@@ -52,6 +52,16 @@ public class Alien  extends AbstractMovable{
 
     @Override
     public void collidedWith(Alien alien) { return ; }
+
+    @Override
+    public void collidedWith(Bonus bonus) {
+
+    }
+
+    @Override
+    public void collidedWith(Spaceship spaceship) {
+
+    }
 
     @Override
     public void collidedWith(Shot shot) { return ; }
