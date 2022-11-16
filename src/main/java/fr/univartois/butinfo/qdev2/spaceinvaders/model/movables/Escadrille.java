@@ -4,15 +4,16 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Escadrille extends AbstractMovable {
 
-    private List<Alien> aliens = new ArrayList<>();
+    private List<IMovable> aliens = new ArrayList<>();
 
-    private Alien alienHit;
+    private IMovable alienHit;
 
     private IAlienMovesStrategy strategy;
 
@@ -20,51 +21,58 @@ public class Escadrille extends AbstractMovable {
      * Crée une nouvelle instance de AbstractMovable.
      *
      * @param game      Le jeu dans lequel l'objet évolue.
-     * @param xPosition La position en x initiale de l'objet.
-     * @param yPosition La position en y initiale de l'objet.
-     * @param sprite    L'instance de {@link Sprite} représentant l'objet.
+     * @param strategy  La stratégie de déplacement de l'escadrille
      */
-    public Escadrille(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, IAlienMovesStrategy strategy) {
-        super(game, xPosition, yPosition, sprite);
+    public Escadrille(SpaceInvadersGame game, IAlienMovesStrategy strategy, Sprite sprite) {
+        super(game, 0, 0, sprite);
         this.strategy = strategy;
     }
 
-    public void addAlien(Alien alien){
+    public void addAlien(IMovable alien){
         this.aliens.add(alien);
+    }
+
+    public void addAliens(List<IMovable> aliens){
+        this.aliens.addAll(aliens);
     }
 
     @Override
     public boolean move(long delta){
         boolean contactWithBorder = false;
-        for(Alien alien : aliens){
-            if (!alien.move(delta)) {
-                contactWithBorder = true;
+        if (aliens.size() != 0){
+            for(IMovable alien : aliens){
+                if (!alien.move(delta)) {
+                    contactWithBorder = true;
+                }
             }
-        }
-        if (contactWithBorder) {
-            for(Alien alien : aliens){
-                update(strategy, alien, true);
-            }
-        } else {
-            for(Alien alien : aliens){
-                update(strategy, alien, false);
+            if (contactWithBorder) {
+                for(IMovable alien : aliens){
+                    update(strategy, alien, true);
+                }
+            } else {
+                for(IMovable alien : aliens){
+                    update(strategy, alien, false);
+                }
             }
         }
         return contactWithBorder;
     }
 
-    private void update(IAlienMovesStrategy strategy, Alien alien, boolean contactWithBorder) {
+    private void update(IAlienMovesStrategy strategy, IMovable alien, boolean contactWithBorder) {
         strategy.update(alien, contactWithBorder);
     }
 
     @Override
     public boolean isCollidingWith(IMovable other){
-        for(Alien alien : aliens){
-            if (alien.isCollidingWith(other)){
-                this.alienHit = alien;
-                return true;
+        if (aliens.size() != 0){
+            for(IMovable alien : aliens){
+                if (alien.isCollidingWith(other)){
+                    this.alienHit = alien;
+                    return true;
+                }
             }
         }
+
         return false;
     }
 

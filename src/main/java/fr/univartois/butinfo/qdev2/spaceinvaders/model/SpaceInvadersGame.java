@@ -247,7 +247,7 @@ public final class SpaceInvadersGame {
 
         Collections.shuffle(strategies);
         IAlienMovesStrategy strategy = strategies.get(0);
-        IMovable alien1 = this.factory.createAlien(0, getTopLimit(), strategy);
+        IMovable alien1 = this.factory.createAlien(10, getTopLimit(), strategy);
 
         Collections.shuffle(strategies);
         strategy = strategies.get(0);
@@ -257,14 +257,21 @@ public final class SpaceInvadersGame {
         strategy = strategies.get(0);
         IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit(), strategy);
 
-        /**
-         * QUESTION CREATION ESCADRILLE + STRATEGIE ESCADRILLE
-        Escadrille escadrille = new Escadrille(this, 0, getTopLimit(), spriteStore.getSprite("alien"), new AlienMoves1Strategy());
-        escadrille.addAlien((Alien) alien1);
-        escadrille.addAlien((Alien) alien2);
-        escadrille.addAlien((Alien) alien3);
-        addMovable(escadrille);
-         **/
+        List<IMovable> aliens = new ArrayList<>();
+        aliens.add(alien1);
+        aliens.add(alien2);
+        aliens.add(alien3);
+        Escadrille escadrille = new Escadrille(this, strategy, spriteStore.getSprite("alien"));
+
+
+        escadrille.addAlien(alien1);
+        controller.addMovable(alien1);
+        escadrille.addAlien(alien2);
+        controller.addMovable(alien2);
+        escadrille.addAlien(alien3);
+        controller.addMovable(alien3);
+        movableObjects.add(escadrille);
+
 
         this.nbRemainingAliens += 3;
     }

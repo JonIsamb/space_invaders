@@ -8,10 +8,13 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
+
+import java.util.List;
 
 /**
  * Le type MovableFactory
