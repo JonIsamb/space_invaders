@@ -6,9 +6,10 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 public class Shot extends AbstractMovable {
 
-    public Shot(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite){
+    public Shot(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, int speed){
         super(game, xPosition, yPosition, sprite);
-        this.setVerticalSpeed(-300);
+        this.setVerticalSpeed(speed);
+
     }
     @Override
     public void collidedWith(IMovable other) {
