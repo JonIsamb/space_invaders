@@ -77,9 +77,9 @@ public class MovableFactory implements IMovableFactory{
      */
 
     @Override
-    public IMovable createAlien(int x, int y, IAlienMovesStrategy strategy) {
+    public IMovable createAlien(int x, int y) {
         return new AlienPlusResistant(
-                new Alien(game, x, y, spriteStore.getSprite("alien"), strategy),
+                new Alien(game, x, y, spriteStore.getSprite("alien"), new AlienMoves4Strategy(), new ShotLevel3()),
                 new SimpleIntegerProperty(2));
     }
 
