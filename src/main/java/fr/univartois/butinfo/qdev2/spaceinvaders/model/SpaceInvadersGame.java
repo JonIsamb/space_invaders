@@ -246,15 +246,15 @@ public final class SpaceInvadersGame {
 
         Collections.shuffle(strategies);
         IAlienMovesStrategy strategy = strategies.get(0);
-        IMovable alien1 = this.factory.createAlien(0, getTopLimit(), strategy);
+        IMovable alien1 = this.factory.createAlien(0, getTopLimit());
 
         Collections.shuffle(strategies);
         strategy = strategies.get(0);
-        IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit(), strategy);
+        IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit());
 
         Collections.shuffle(strategies);
         strategy = strategies.get(0);
-        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit(), strategy);
+        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit());
 
         addMovable(alien1);
         addMovable(alien2);
@@ -303,6 +303,14 @@ public final class SpaceInvadersGame {
         }
     }
 
+    public void fireShotAlien(IMovable alien){
+
+        IMovable shotAlien = factory.createAlienShot(alien.getX()+alien.getHeight(), alien.getY()+alien.getHeight());
+        shotAlien.setY(shotAlien.getY()+shotAlien.getHeight());
+        addMovable(shotAlien);
+    }
+
+
     /**
      * Met à jour le score du joueur lorsqu'un alien est tué.
      * Si c'était le dernier, le joueur gagne la partie.
@@ -315,7 +323,6 @@ public final class SpaceInvadersGame {
         if (nbRemainingAliens == 0) {
             animation.stop();
             controller.gameOver("Vous avez vaincu les aliens !");
-
         }
     }
 
@@ -378,5 +385,7 @@ public final class SpaceInvadersGame {
         }
         movableObjects.clear();
     }
+
+
 
 }
