@@ -29,7 +29,7 @@ public class Shot extends AbstractMovable {
 
     @Override
     public void collidedWith(Spaceship spaceship) {
-
+        game.reducePlayerLife();
     }
 
     @Override
