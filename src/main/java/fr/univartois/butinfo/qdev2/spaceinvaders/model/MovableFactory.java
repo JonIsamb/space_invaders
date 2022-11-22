@@ -12,7 +12,6 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusLife;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves4Strategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -81,7 +80,7 @@ public class MovableFactory implements IMovableFactory{
 
     @Override
     public IMovable createAlien(int x, int y) {
-        return new AlienPlusResistant(
+        return new LifeDecorator(
                 new Alien(game, x, y, spriteStore.getSprite("alien"), new AlienMoves4Strategy(), new ShotLevel3()),
                 new SimpleIntegerProperty(2));
     }

@@ -13,11 +13,11 @@ import javafx.beans.property.IntegerProperty;
  *
  * @version 0.1.0
  */
-public class AlienPlusResistant extends MovableDecorator{
+public class LifeDecorator extends MovableDecorator{
     private IntegerProperty life;
 
-    public AlienPlusResistant(IMovable Alien, IntegerProperty life) {
-        super(Alien);
+    public LifeDecorator(IMovable movable, IntegerProperty life) {
+        super(movable);
         this.life=life;
     }
 
@@ -41,12 +41,11 @@ public class AlienPlusResistant extends MovableDecorator{
     }
 
     @Override
-    public void collidedWith(Shot other){
+    public void collidedWith(Shot shot){
         life.setValue(life.get()-1);
         if (life.get() == 0) {
-            super.collidedWith(other);
+            super.collidedWith(shot);
         } else {
-            other.collidedWith(this);
             //faire methode pour enlever l'autre element en contact
         }
     }

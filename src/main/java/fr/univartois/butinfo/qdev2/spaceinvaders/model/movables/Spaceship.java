@@ -19,7 +19,9 @@ public class Spaceship extends AbstractMovable {
     }
 
     @Override
-    public void collidedWith(IMovable other) { other.collidedWith(this); }
+    public void collidedWith(IMovable other) {
+        other.collidedWith(this);
+    }
 
     @Override
     public void collidedWith(Alien alien) {
@@ -28,8 +30,7 @@ public class Spaceship extends AbstractMovable {
 
     @Override
     public void collidedWith(Bonus bonus) {
-        //game.removeMovable(bonus);
-        //game.addPlayerLife();
+
     }
 
     @Override
@@ -39,6 +40,6 @@ public class Spaceship extends AbstractMovable {
 
     @Override
     public void collidedWith(Shot shot) {
-        game.reducePlayerLife();
+        game.removeMovable(shot);
     }
 }

@@ -22,6 +22,6 @@ public class BonusLife extends Bonus {
         super.collidedWith(spaceship);
 
         System.out.println("ajouter vie joueur");
-        //game.addPlayerLife();
+        game.addPlayerLife();
     }
 }

@@ -27,6 +27,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.*;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
+import javafx.beans.binding.IntegerExpression;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -238,12 +239,13 @@ public final class SpaceInvadersGame {
         clearAllMovables();
         //Spaceship ship = new Spaceship(this, );
         this.ship = this.factory.createShip(getRightLimit(), getBottomLimit());
+        //this.ship = new LifeDecorator(this.factory.createShip(getRightLimit(), getBottomLimit()), this.life);
         addMovable(this.ship);
         ArrayList<IAlienMovesStrategy> strategies = new ArrayList<>();
         strategies.add(new AlienMoves1Strategy());
-        /* strategies.add(new AlienMoves2Strategy());
+        strategies.add(new AlienMoves2Strategy());
         strategies.add(new AlienMoves3Strategy());
-        strategies.add(new AlienMoves4Strategy()); */
+        strategies.add(new AlienMoves4Strategy());
 
         Collections.shuffle(strategies);
         IAlienMovesStrategy strategy = strategies.get(0);
