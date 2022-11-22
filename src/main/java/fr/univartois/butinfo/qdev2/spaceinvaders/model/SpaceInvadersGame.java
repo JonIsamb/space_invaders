@@ -19,6 +19,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
@@ -27,6 +28,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.*;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
+import javafx.beans.binding.IntegerExpression;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -238,6 +240,7 @@ public final class SpaceInvadersGame {
         clearAllMovables();
         //Spaceship ship = new Spaceship(this, );
         this.ship = this.factory.createShip(getRightLimit(), getBottomLimit());
+        //this.ship = new LifeDecorator(this.factory.createShip(getRightLimit(), getBottomLimit()), this.life);
         addMovable(this.ship);
         ArrayList<IAlienMovesStrategy> strategies = new ArrayList<>();
         strategies.add(new AlienMoves1Strategy());
@@ -248,6 +251,7 @@ public final class SpaceInvadersGame {
         Collections.shuffle(strategies);
         IAlienMovesStrategy strategy = strategies.get(0);
         IMovable alien1 = this.factory.createAlien(10, getTopLimit(), strategy);
+
 
         Collections.shuffle(strategies);
         strategy = strategies.get(0);
@@ -280,7 +284,10 @@ public final class SpaceInvadersGame {
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
      */
     public void dropBonus() {
-        // TODO Créer le bonus.
+        Random random = new Random();
+        int x = random.nextInt(getWidth());
+        IMovable bonus = this.factory.createBonus(x, getTopLimit());
+        addMovable(bonus);
     }
 
     /**
@@ -317,6 +324,14 @@ public final class SpaceInvadersGame {
         }
     }
 
+    public void fireShotAlien(IMovable alien){
+
+        IMovable shotAlien = factory.createAlienShot(alien.getX()+alien.getHeight(), alien.getY()+alien.getHeight());
+        shotAlien.setY(shotAlien.getY()+shotAlien.getHeight());
+        addMovable(shotAlien);
+    }
+
+
     /**
      * Met à jour le score du joueur lorsqu'un alien est tué.
      * Si c'était le dernier, le joueur gagne la partie.
@@ -329,7 +344,6 @@ public final class SpaceInvadersGame {
         if (nbRemainingAliens == 0) {
             animation.stop();
             controller.gameOver("Vous avez vaincu les aliens !");
-
         }
     }
 
@@ -341,6 +355,10 @@ public final class SpaceInvadersGame {
         if (life.get()==0) {
             playerIsDead();
         } 
+    }
+
+    public void addPlayerLife() {
+        life.setValue(life.get()+1);
     }
 
 
@@ -392,5 +410,7 @@ public final class SpaceInvadersGame {
         }
         movableObjects.clear();
     }
+
+
 
 }

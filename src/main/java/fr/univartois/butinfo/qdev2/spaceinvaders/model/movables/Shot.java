@@ -2,13 +2,15 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 public class Shot extends AbstractMovable {
 
-    public Shot(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite){
+    public Shot(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, int speed){
         super(game, xPosition, yPosition, sprite);
-        this.setVerticalSpeed(-300);
+        this.setVerticalSpeed(speed);
+
     }
     @Override
     public void collidedWith(IMovable other) {
@@ -18,7 +20,16 @@ public class Shot extends AbstractMovable {
     @Override
     public void collidedWith(Alien alien) {
         game.removeMovable(this);
-        game.alienIsDead(alien);
+    }
+
+    @Override
+    public void collidedWith(Bonus bonus) {
+
+    }
+
+    @Override
+    public void collidedWith(Spaceship spaceship) {
+        game.reducePlayerLife();
     }
 
     @Override

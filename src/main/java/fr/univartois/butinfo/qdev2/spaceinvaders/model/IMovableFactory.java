@@ -69,6 +69,8 @@ public interface IMovableFactory {
      */
     IMovable createShip(int x, int y);
 
+    IMovable createBonus(int x, int y);
+
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un tir.
      *
@@ -79,6 +81,6 @@ public interface IMovableFactory {
      */
     IMovable createShot(int x, int y);
 
-
+    IMovable createAlienShot(int x, int y);
 
 }
