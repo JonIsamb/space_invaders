@@ -33,8 +33,8 @@ public class Escadrille extends AbstractMovable {
         this.aliens.add(alien);
     }
 
-    public void addAliens(List<IMovable> aliens){
-        this.aliens.addAll(aliens);
+    public List<IMovable> getAliens(){
+        return this.aliens;
     }
 
     @Override

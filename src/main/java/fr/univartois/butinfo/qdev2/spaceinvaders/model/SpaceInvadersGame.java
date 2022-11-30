@@ -404,6 +404,12 @@ public final class SpaceInvadersGame {
      */
     private void clearAllMovables() {
         for (IMovable movable : movableObjects) {
+            if (movable instanceof Escadrille){
+                List<IMovable> aliens = ((Escadrille) movable).getAliens();
+                for (IMovable alien : aliens){
+                    alien.consume();
+                }
+            }
             movable.consume();
         }
         movableObjects.clear();
