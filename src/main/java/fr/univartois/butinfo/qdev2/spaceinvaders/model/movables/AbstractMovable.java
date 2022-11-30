@@ -275,6 +275,10 @@ public abstract class AbstractMovable implements IMovable {
         return true;
     }
 
+    public boolean hasHitBorder(long delta) {
+        return !move(delta);
+    }
+
     /**
      * Calcule la nouvelle position d'un objet sur un axe particulier, en fonction de sa
      * position actuelle sur cet axe.

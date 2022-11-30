@@ -31,6 +31,11 @@ public class LifeDecorator extends MovableDecorator{
     }
 
     @Override
+    public boolean hasHitBorder(long delta) {
+        return !super.move(delta);
+    }
+
+    @Override
     public void collidedWith(Bonus bonus) {
 
     }

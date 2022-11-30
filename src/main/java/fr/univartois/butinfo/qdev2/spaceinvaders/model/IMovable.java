@@ -179,6 +179,8 @@ public interface IMovable {
      */
     ObjectProperty<Sprite> getSpriteProperty();
 
+    boolean hasHitBorder(long delta);
+
     /**
      * Vérifie si cet objet est entré en collision avec une autre instance de
      * {@link IMovable}.

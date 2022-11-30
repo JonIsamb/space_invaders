@@ -2,6 +2,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.scene.image.Image;
@@ -37,25 +38,25 @@ public class Escadrille extends AbstractMovable {
     }
 
     @Override
-    public boolean move(long delta){
-        boolean contactWithBorder = false;
-        if (aliens.size() != 0){
-            for(IMovable alien : aliens){
-                if (!alien.move(delta)) {
-                    contactWithBorder = true;
-                }
-            }
-            if (contactWithBorder) {
-                for(IMovable alien : aliens){
-                    update(strategy, alien, true);
-                }
-            } else {
-                for(IMovable alien : aliens){
-                    update(strategy, alien, false);
-                }
+    public boolean move(long delta) {
+        System.out.println("move de l'escadrille");
+        boolean contactWithBorder = hasHitBorder(delta);
+        if (aliens.size() != 0) {
+            for(IMovable alien : aliens) {
+                update(strategy, alien, contactWithBorder);
             }
         }
         return contactWithBorder;
+    }
+
+    @Override
+    public boolean hasHitBorder(long delta){
+        for (IMovable alien : aliens) {
+            if (alien.hasHitBorder(delta)){
+                return true;
+            }
+        }
+        return false;
     }
 
     private void update(IAlienMovesStrategy strategy, IMovable alien, boolean contactWithBorder) {
@@ -78,13 +79,20 @@ public class Escadrille extends AbstractMovable {
 
     @Override
     public void collidedWith(IMovable other) {
-        aliens.remove(alienHit);
         alienHit.collidedWith(other);
+        game.alienIsDead(alienHit);
+        aliens.remove(alienHit);
         this.alienHit = null;
     }
 
     @Override
     public void collidedWith(Alien alien) {}
+
+    @Override
+    public void collidedWith(Bonus bonus) {}
+
+    @Override
+    public void collidedWith(Spaceship spaceship) {}
 
     @Override
     public void collidedWith(Shot shot) {}
