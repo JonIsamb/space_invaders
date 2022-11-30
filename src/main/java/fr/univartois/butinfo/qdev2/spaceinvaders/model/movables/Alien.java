@@ -36,7 +36,6 @@ public class Alien  extends AbstractMovable{
 
     @Override
     public boolean move(long delta) {
-        System.out.println("move de l'alien");
         if(!super.move(delta)) {
             if (getY()+this.getHeight() >= game.getBottomLimit()) {
                 game.alienReachedPlanet();

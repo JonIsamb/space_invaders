@@ -39,7 +39,6 @@ public class Escadrille extends AbstractMovable {
 
     @Override
     public boolean move(long delta) {
-        System.out.println("move de l'escadrille");
         boolean contactWithBorder = hasHitBorder(delta);
         if (aliens.size() != 0) {
             for(IMovable alien : aliens) {
