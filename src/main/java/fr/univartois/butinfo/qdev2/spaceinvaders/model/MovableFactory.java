@@ -8,12 +8,13 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.wall.Wall;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusLife;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves4Strategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
+import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /**
@@ -117,8 +118,15 @@ public class MovableFactory implements IMovableFactory{
     }
 
     public IMovable createBonus(int x, int y) {
-        Bonus bonus = new BonusLife(game, x, y, spriteStore.getSprite("bonus-invulnerable"));
-        return bonus;
+        return new BonusLife(game, x, y, spriteStore.getSprite("bonus-invulnerable"));
+    }
+
+    public IMovable createWall(int x, int y) {
+        Sprite[] sprites = new Sprite[2];
+        sprites[0] = spriteStore.getSprite("cracked-bricks");
+        sprites[1] = spriteStore.getSprite("empty-bricks");
+
+        return new Wall(game, x, y, spriteStore.getSprite("bricks"), sprites);
     }
 }
 
