@@ -237,7 +237,6 @@ public final class SpaceInvadersGame {
     private void createMovables() {
         // On commence par enlever tous les éléments mobiles encore présents.
         clearAllMovables();
-        //Spaceship ship = new Spaceship(this, );
         this.ship = this.factory.createShip(getRightLimit(), getBottomLimit());
         //this.ship = new LifeDecorator(this.factory.createShip(getRightLimit(), getBottomLimit()), this.life);
         addMovable(this.ship);
@@ -264,6 +263,15 @@ public final class SpaceInvadersGame {
         addMovable(alien2);
         addMovable(alien3);
         this.nbRemainingAliens += 3;
+
+        // -- Ajout de quelques murs
+        addMovable(this.factory.createWall(233, 300));
+        addMovable(this.factory.createWall(266, 300));
+        addMovable(this.factory.createWall(300, 300));
+        addMovable(this.factory.createWall(333, 300));
+        addMovable(this.factory.createWall(366, 300));
+        addMovable(this.factory.createWall(400, 300));
+        addMovable(this.factory.createWall(433, 300));
     }
 
     /**
