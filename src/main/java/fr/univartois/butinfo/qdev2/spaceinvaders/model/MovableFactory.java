@@ -122,11 +122,10 @@ public class MovableFactory implements IMovableFactory{
     }
 
     public IMovable createWall(int x, int y) {
-        Sprite[] sprites = new Sprite[2];
-        sprites[0] = spriteStore.getSprite("cracked-bricks");
-        sprites[1] = spriteStore.getSprite("empty-bricks");
-
-        return new Wall(game, x, y, spriteStore.getSprite("bricks"), sprites);
+        return new Wall(game, x, y,
+                spriteStore.getSprite("bricks"),
+                new Sprite[]{spriteStore.getSprite("cracked-bricks"), spriteStore.getSprite("empty-bricks")}
+        );
     }
 }
 
