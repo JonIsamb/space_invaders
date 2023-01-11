@@ -42,4 +42,6 @@ public class Spaceship extends AbstractMovable {
     public void collidedWith(Shot shot) {
         game.removeMovable(shot);
     }
+
+
 }

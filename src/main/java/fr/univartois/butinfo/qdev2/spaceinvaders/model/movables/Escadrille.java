@@ -64,24 +64,22 @@ public class Escadrille extends AbstractMovable {
 
     @Override
     public boolean isCollidingWith(IMovable other){
+        boolean isColliding = false;
         if (aliens.size() != 0){
             for(IMovable alien : aliens){
                 if (alien.isCollidingWith(other)){
                     this.alienHit = alien;
-                    return true;
+                    isColliding = true;
                 }
             }
         }
 
-        return false;
+        return isColliding;
     }
 
     @Override
     public void collidedWith(IMovable other) {
         alienHit.collidedWith(other);
-        game.alienIsDead(alienHit);
-        aliens.remove(alienHit);
-        this.alienHit = null;
     }
 
     @Override
@@ -94,5 +92,11 @@ public class Escadrille extends AbstractMovable {
     public void collidedWith(Spaceship spaceship) {}
 
     @Override
-    public void collidedWith(Shot shot) {}
+    public void collidedWith(Shot shot) {
+        game.alienIsDead(this.alienHit);
+        aliens.remove(this.alienHit);
+        this.alienHit.consume();
+    }
+
+
 }

@@ -82,4 +82,6 @@ public class Alien  extends AbstractMovable{
         game.removeMovable(this);
     }
 
+
+
 }

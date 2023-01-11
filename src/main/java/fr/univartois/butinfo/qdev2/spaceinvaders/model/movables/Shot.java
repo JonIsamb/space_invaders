@@ -38,6 +38,8 @@ public class Shot extends AbstractMovable {
         game.removeMovable(shot);
     }
 
+
+
     @Override
     public boolean move(long delta) {
         if (super.move(delta)) {
