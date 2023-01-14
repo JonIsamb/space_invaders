@@ -1,6 +1,5 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
@@ -16,6 +15,7 @@ import javafx.beans.property.IntegerProperty;
  */
 public class LifeDecorator extends MovableDecorator{
     private IntegerProperty life;
+    private IMovable movable;
 
     public LifeDecorator(IMovable movable, IntegerProperty life) {
         super(movable);
@@ -38,12 +38,12 @@ public class LifeDecorator extends MovableDecorator{
 
     @Override
     public void collidedWith(Bonus bonus) {
-
+        movable.collidedWith(bonus);
     }
 
     @Override
     public void collidedWith(Spaceship spaceship) {
-
+        movable.collidedWith(spaceship);
     }
 
     @Override
