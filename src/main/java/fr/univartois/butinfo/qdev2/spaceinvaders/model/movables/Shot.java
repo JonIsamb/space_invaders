@@ -25,7 +25,7 @@ public class Shot extends AbstractMovable {
 
     @Override
     public void collidedWith(Bonus bonus) {
-
+        // Le bonus serait détruit trop souvent si on le détruisait ici
     }
 
     @Override
@@ -40,6 +40,7 @@ public class Shot extends AbstractMovable {
     }
 
     public void collidedWith(Wall wall) {
+        // Géré dans le collideWith entre le mur et le shot
     }
 
     @Override

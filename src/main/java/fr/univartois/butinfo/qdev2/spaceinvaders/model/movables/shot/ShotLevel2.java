@@ -5,17 +5,15 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.IStrategyShot;
 
 import java.util.Random;
 
-public class ShotLevel2 implements IStrategyShot
-{
-
+public class ShotLevel2 implements IStrategyShot {
+    private final Random randomGenerator = new Random();
     @Override
     public boolean counterAttack(IMovable alien) {
-        Random r = new Random();
-        if (r.nextInt(1000) ==1 ){
+        if (randomGenerator.nextInt(1000) == 1){
             return true;
-        }else {
-            return false;
         }
+
+        return false;
     }
 
     @Override
@@ -23,6 +21,4 @@ public class ShotLevel2 implements IStrategyShot
         // Ne fait rien
         // Uniquement utile pour le composite
     }
-
-
 }

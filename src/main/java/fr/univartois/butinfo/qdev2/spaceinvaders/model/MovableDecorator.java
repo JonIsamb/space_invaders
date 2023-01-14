@@ -17,7 +17,7 @@ import javafx.beans.property.ObjectProperty;
 public abstract class MovableDecorator implements IMovable{
     protected IMovable protection;
 
-    public MovableDecorator(IMovable protection) {
+    protected MovableDecorator(IMovable protection) {
         this.protection = protection;
     }
 

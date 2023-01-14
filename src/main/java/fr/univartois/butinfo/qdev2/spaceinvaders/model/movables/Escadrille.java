@@ -5,7 +5,6 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
-import javafx.scene.image.Image;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,13 +82,19 @@ public class Escadrille extends AbstractMovable {
     }
 
     @Override
-    public void collidedWith(Alien alien) {}
+    public void collidedWith(Alien alien) {
+        // Ça ne peut pas arriver
+    }
 
     @Override
-    public void collidedWith(Bonus bonus) {}
+    public void collidedWith(Bonus bonus) {
+        // Rien ne doit se passer ici
+    }
 
     @Override
-    public void collidedWith(Spaceship spaceship) {}
+    public void collidedWith(Spaceship spaceship) {
+        // Ça ne peut pas arriver
+    }
 
     @Override
     public void collidedWith(Shot shot) {
@@ -97,6 +102,4 @@ public class Escadrille extends AbstractMovable {
         aliens.remove(this.alienHit);
         this.alienHit.consume();
     }
-
-
 }

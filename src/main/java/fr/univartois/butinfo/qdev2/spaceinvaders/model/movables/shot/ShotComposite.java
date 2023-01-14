@@ -4,17 +4,17 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IStrategyShot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class ShotComposite implements IStrategyShot {
-    ArrayList<IStrategyShot> shots;
+    List<IStrategyShot> shots;
     IStrategyShot actualShot;
     SpaceInvadersGame game;
 
     Random randomGenerator;
 
-    public ShotComposite(ArrayList<IStrategyShot> shots, IStrategyShot actualShot, SpaceInvadersGame game) {
+    public ShotComposite(List<IStrategyShot> shots, IStrategyShot actualShot, SpaceInvadersGame game) {
         this.shots = shots;
         this.actualShot = actualShot;
         this.randomGenerator = new Random();

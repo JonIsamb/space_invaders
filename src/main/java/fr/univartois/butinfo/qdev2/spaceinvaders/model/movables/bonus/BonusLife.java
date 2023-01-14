@@ -1,7 +1,6 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
@@ -23,6 +22,4 @@ public class BonusLife extends Bonus {
         super.collidedWith(spaceship);
         game.addPlayerLife();
     }
-
-
 }

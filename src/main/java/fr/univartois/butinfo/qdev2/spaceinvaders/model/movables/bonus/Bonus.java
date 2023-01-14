@@ -18,7 +18,7 @@ public abstract class Bonus extends AbstractMovable {
      * @param yPosition La position en y initiale de l'objet.
      * @param sprite    L'instance de {@link Sprite} représentant l'objet.
      */
-    public Bonus(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
+    protected Bonus(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite) {
         super(game, xPosition, yPosition, sprite);
         this.setHorizontalSpeed(0);
         this.setVerticalSpeed(200);

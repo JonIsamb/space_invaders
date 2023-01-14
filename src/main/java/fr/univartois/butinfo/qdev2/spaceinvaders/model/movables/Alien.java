@@ -7,8 +7,8 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.*;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
-public class Alien  extends AbstractMovable{
-    public IAlienMovesStrategy strategy;
+public class Alien extends AbstractMovable{
+    private IAlienMovesStrategy strategy;
 
     private final IStrategyShot strategyShot;
 
@@ -24,8 +24,6 @@ public class Alien  extends AbstractMovable{
      */
     public Alien(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, IAlienMovesStrategy strategy, IStrategyShot strategyShot) {
         super(game, xPosition, yPosition, sprite);
-        //this.setHorizontalSpeed(200);
-        //this.setVerticalSpeed(30);
         this.setHorizontalSpeed(200);
         this.setVerticalSpeed(20);
         this.strategy = strategy;
@@ -64,17 +62,19 @@ public class Alien  extends AbstractMovable{
     }
 
     @Override
-    public void collidedWith(Alien alien) {}
+    public void collidedWith(Alien alien) {
+        // Rien ne doit se passer ici
+    }
 
 
     @Override
     public void collidedWith(Bonus bonus) {
-
+        // On ne veut pas qu'il se passe quelque chose ici
     }
 
     @Override
     public void collidedWith(Spaceship spaceship) {
-
+        // On ne veut pas que cela arrive
     }
 
     @Override

@@ -5,13 +5,13 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import java.util.Random;
 
 public class AlienMoves3Strategy implements IAlienMovesStrategy {
+    private final Random randomGenerator = new Random();
     @Override
     public void update(IMovable alien, boolean contactWithBorder) {
         if (contactWithBorder){
             alien.setHorizontalSpeed(-alien.getHorizontalSpeed());
         } else {
-            double random = new Random().nextInt(1080);
-            if(random<10) {
+            if(randomGenerator.nextInt(1080)<10) {
                 alien.setHorizontalSpeed(-alien.getHorizontalSpeed());
             }
         }

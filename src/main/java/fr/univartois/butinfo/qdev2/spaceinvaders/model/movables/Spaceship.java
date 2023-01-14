@@ -30,12 +30,12 @@ public class Spaceship extends AbstractMovable {
 
     @Override
     public void collidedWith(Bonus bonus) {
-
+        // Géré dans le collideWith entre le bonus et le vaisseau
     }
 
     @Override
     public void collidedWith(Spaceship spaceship) {
-
+        // Ce cas n'arrivera jamais (jeu non multi joueur)
     }
 
     @Override
