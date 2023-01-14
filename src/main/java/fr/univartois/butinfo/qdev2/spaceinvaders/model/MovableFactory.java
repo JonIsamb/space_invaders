@@ -90,14 +90,14 @@ public class MovableFactory implements IMovableFactory{
      */
 
     @Override
-    public IMovable createAlien(int x, int y) {
+    public IMovable createAlien(int x, int y, IAlienMovesStrategy strategy) {
         ArrayList<IStrategyShot> shots = new ArrayList<>();
         shots.add(new ShotLevel1());
         shots.add(new ShotLevel2());
         shots.add(new ShotLevel3());
 
         return new LifeDecorator(
-                new Alien(game, x, y, spriteStore.getSprite("alien"), new AlienMoves4Strategy(), new ShotComposite(shots, shots.get(2), game)),
+                new Alien(game, x, y, spriteStore.getSprite("alien"), strategy, new ShotComposite(shots, shots.get(2), game)),
                 new SimpleIntegerProperty(2));
     }
 
