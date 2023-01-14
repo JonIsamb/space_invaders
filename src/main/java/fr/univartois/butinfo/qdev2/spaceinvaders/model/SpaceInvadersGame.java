@@ -239,20 +239,16 @@ public final class SpaceInvadersGame {
         // On commence par enlever tous les éléments mobiles encore présents.
         clearAllMovables();
         this.ship = this.factory.createShip(getRightLimit(), getBottomLimit());
-        //this.ship = new LifeDecorator(this.factory.createShip(getRightLimit(), getBottomLimit()), this.life);
         addMovable(this.ship);
         ArrayList<IAlienMovesStrategy> strategies = new ArrayList<>();
         strategies.add(new AlienMoves1Strategy());
-        //strategies.add(new AlienMoves2Strategy());
-        //strategies.add(new AlienMoves3Strategy());
-        //strategies.add(new AlienMoves4Strategy());
+        strategies.add(new AlienMoves2Strategy());
+        strategies.add(new AlienMoves3Strategy());
+        strategies.add(new AlienMoves4Strategy());
 
         IAlienMovesStrategy strategy = new AlienMovesNullStrategy();
         IMovable alien1 = this.factory.createAlien(10, getTopLimit(), strategy);
-
         IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit(), strategy);
-
-
         IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit(), strategy);
 
         List<IMovable> aliens = new ArrayList<>();
