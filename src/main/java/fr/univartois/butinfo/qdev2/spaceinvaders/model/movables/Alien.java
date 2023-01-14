@@ -10,7 +10,7 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 public class Alien  extends AbstractMovable{
     public IAlienMovesStrategy strategy;
 
-    private IStrategyShot strategyShot;
+    private final IStrategyShot strategyShot;
 
 
 
@@ -41,6 +41,7 @@ public class Alien  extends AbstractMovable{
                 game.alienReachedPlanet();
             }else{
                 update(strategy, this, true);
+                strategyShot.switchCurrent();
             }
             return false;
         } else {

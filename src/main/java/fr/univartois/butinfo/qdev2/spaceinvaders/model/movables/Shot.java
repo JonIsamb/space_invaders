@@ -3,6 +3,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.SpaceInvadersGame;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.wall.Wall;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 public class Shot extends AbstractMovable {
@@ -10,10 +11,10 @@ public class Shot extends AbstractMovable {
     public Shot(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, int speed){
         super(game, xPosition, yPosition, sprite);
         this.setVerticalSpeed(speed);
-
     }
     @Override
     public void collidedWith(IMovable other) {
+        game.removeMovable(this);
         other.collidedWith(this);
     }
 
@@ -38,7 +39,8 @@ public class Shot extends AbstractMovable {
         game.removeMovable(shot);
     }
 
-
+    public void collidedWith(Wall wall) {
+    }
 
     @Override
     public boolean move(long delta) {

@@ -13,5 +13,7 @@ public interface IStrategyShot {
     */
 boolean counterAttack(IMovable alien);
 
+void switchCurrent();
+
 
 }

@@ -82,5 +82,6 @@ public interface IMovableFactory {
     IMovable createShot(int x, int y);
 
     IMovable createAlienShot(int x, int y);
+    IMovable createWall(int x, int y);
 
 }
