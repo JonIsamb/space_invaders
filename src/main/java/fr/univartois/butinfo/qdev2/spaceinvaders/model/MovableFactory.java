@@ -8,6 +8,10 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotComposite;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotLevel1;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotLevel2;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotLevel3;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.wall.Wall;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
@@ -16,6 +20,8 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.SimpleIntegerProperty;
+
+import java.util.ArrayList;
 
 /**
  * Le type MovableFactory
@@ -81,8 +87,13 @@ public class MovableFactory implements IMovableFactory{
 
     @Override
     public IMovable createAlien(int x, int y) {
+        ArrayList<IStrategyShot> shots = new ArrayList<>();
+        shots.add(new ShotLevel1());
+        shots.add(new ShotLevel2());
+        shots.add(new ShotLevel3());
+
         return new LifeDecorator(
-                new Alien(game, x, y, spriteStore.getSprite("alien"), new AlienMoves4Strategy(), new ShotLevel3()),
+                new Alien(game, x, y, spriteStore.getSprite("alien"), new AlienMoves4Strategy(), new ShotComposite(shots, shots.get(2), game)),
                 new SimpleIntegerProperty(2));
     }
 
