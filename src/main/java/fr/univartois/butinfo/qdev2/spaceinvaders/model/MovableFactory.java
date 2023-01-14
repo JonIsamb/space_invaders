@@ -10,6 +10,7 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusInvulnerable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotLevel1;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotLevel2;
@@ -22,10 +23,14 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.lang.reflect.Array;
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Le type MovableFactory
@@ -47,6 +52,8 @@ public class MovableFactory implements IMovableFactory{
 
 
     ShotLevel3 shotLevel3;
+
+    Random randomGenerator = new Random();
 
 
     
@@ -98,7 +105,7 @@ public class MovableFactory implements IMovableFactory{
 
         return new LifeDecorator(
                 new Alien(game, x, y, spriteStore.getSprite("alien"), strategy, new ShotComposite(shots, shots.get(2), game)),
-                new SimpleIntegerProperty(2));
+                new SimpleIntegerProperty(3));
     }
 
 
@@ -112,7 +119,10 @@ public class MovableFactory implements IMovableFactory{
      */
     @Override
     public IMovable createShip(int x, int y) {
-        return new Spaceship(game, x, y, spriteStore.getSprite("ship"));
+        return new LifeDecorator(
+                new Spaceship(game, x, y, spriteStore.getSprite("ship")),
+                new SimpleIntegerProperty(3)
+        );
     }
 
     /**
@@ -133,7 +143,8 @@ public class MovableFactory implements IMovableFactory{
     }
 
     public IMovable createBonus(int x, int y) {
-        return new BonusLife(game, x, y, spriteStore.getSprite("bonus-invulnerable"));
+        Bonus[] bonusList = new Bonus[]{new BonusLife(game, x, y, spriteStore.getSprite("bonus-life")), new BonusInvulnerable(game, x, y, spriteStore.getSprite("bonus-invulnerable"))};
+        return bonusList[randomGenerator.nextInt(0, 3)];
     }
 
     public IMovable createWall(int x, int y) {
