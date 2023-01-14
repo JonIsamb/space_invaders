@@ -1,4 +1,8 @@
-package fr.univartois.butinfo.qdev2.spaceinvaders.model;
+package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot;
+
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovableFactory;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.IStrategyShot;
 
 import java.util.Random;
 
@@ -16,5 +20,11 @@ public class ShotLevel3 implements IStrategyShot
             return true;
         }
             return false;
+    }
+
+    @Override
+    public void switchCurrent() {
+        // Ne fait rien
+        // Uniquement utile pour le composite
     }
 }
