@@ -8,7 +8,6 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusInvulnerable;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotComposite;
@@ -19,16 +18,11 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.wall.Wall;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusLife;
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves4Strategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
-import java.lang.reflect.Array;
-import java.util.Collections;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -60,7 +54,7 @@ public class MovableFactory implements IMovableFactory{
     /**
      * Crée une nouvelle instance de MovableFactory.
      */
-    public MovableFactory() { /* TODO document why this constructor is empty */ }
+    public MovableFactory() { /* document why this constructor is empty */ }
 
 
 

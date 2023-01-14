@@ -7,13 +7,10 @@ package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 public interface IStrategyShot {
 
     /*
-    *
     * methode qui servira a repliquer sur le joueur
-    *
     */
-boolean counterAttack(IMovable alien);
+    boolean counterAttack(IMovable alien);
 
-void switchCurrent();
-
+    void switchCurrent();
 
 }

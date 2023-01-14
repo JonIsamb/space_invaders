@@ -22,13 +22,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.*;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.animation.AnimationTimer;
-import javafx.beans.binding.IntegerExpression;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -102,6 +100,8 @@ public final class SpaceInvadersGame {
      * Le nombre d'aliens encore vivants.
      */
     private int nbRemainingAliens;
+
+    private final Random randomGenerator = new Random();
 
     /**
      * La liste des objets pouvant se déplacer dans le jeu.
@@ -286,8 +286,7 @@ public final class SpaceInvadersGame {
      * Choisit aléatoirement un bonus et le place dans le jeu à une position aléatoire.
      */
     public void dropBonus() {
-        Random random = new Random();
-        int x = random.nextInt(getWidth());
+        int x = randomGenerator.nextInt(getWidth());
         IMovable bonus = this.factory.createBonus(x, getTopLimit());
         addMovable(bonus);
     }

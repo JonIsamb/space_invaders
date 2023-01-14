@@ -10,12 +10,9 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 
 public class Wall extends AbstractMovable {
-
-    private WallStatus status;
-
     private int life;
 
-    private Sprite[] sprites;
+    private final Sprite[] sprites;
 
     private int actualSprite = 0;
 
@@ -29,14 +26,13 @@ public class Wall extends AbstractMovable {
      */
     public Wall(SpaceInvadersGame game, double xPosition, double yPosition, Sprite sprite, Sprite[] sprites) {
         super(game, xPosition, yPosition, sprite);
-        this.status = WallStatus.UNBROKEN;
         this.life = 3;
         this.sprites = sprites;
     }
 
     @Override
     public void collidedWith(IMovable other) {
-        //other.collidedWith(this);
+        // Déjà géré
     }
 
     @Override
@@ -58,13 +54,10 @@ public class Wall extends AbstractMovable {
     @Override
     public void collidedWith(Shot shot) {
 
-        System.out.println(this.life);
         this.life--;
-        System.out.println(this.life);
         if (this.life == 0) {
             this.consume();
         } else {
-            //this.status = this.status.damageIt();
             setSprite(sprites[actualSprite]);
             actualSprite += 1;
         }
