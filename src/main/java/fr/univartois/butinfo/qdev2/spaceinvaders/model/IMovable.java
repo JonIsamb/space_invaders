@@ -17,6 +17,7 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
@@ -179,6 +180,8 @@ public interface IMovable {
      */
     ObjectProperty<Sprite> getSpriteProperty();
 
+    boolean hasHitBorder(long delta);
+
     /**
      * Vérifie si cet objet est entré en collision avec une autre instance de
      * {@link IMovable}.
@@ -204,6 +207,8 @@ public interface IMovable {
     void collidedWith(Spaceship spaceship);
 
     void collidedWith(Shot shot);
+
+
     /**
      * Donne l'objet réel qui implémente cette interface.
      *

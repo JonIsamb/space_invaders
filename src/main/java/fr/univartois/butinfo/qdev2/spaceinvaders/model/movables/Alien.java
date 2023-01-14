@@ -32,9 +32,10 @@ public class Alien  extends AbstractMovable{
         this.strategyShot = strategyShot;
     }
 
+
+
     @Override
     public boolean move(long delta) {
-
         if(!super.move(delta)) {
             if (getY()+this.getHeight() >= game.getBottomLimit()) {
                 game.alienReachedPlanet();
@@ -49,10 +50,7 @@ public class Alien  extends AbstractMovable{
             if (strategyShot.counterAttack(this)) {
                 game.fireShotAlien(this);
             }
-
-
         }
-
         return true;
     }
 
@@ -61,11 +59,13 @@ public class Alien  extends AbstractMovable{
     }
 
     @Override
-    public void collidedWith(IMovable other) { other.collidedWith(this); }
+    public void collidedWith(IMovable other) {
+        other.collidedWith(this);
+    }
 
     @Override
-    public void collidedWith(Alien alien) {
-    }
+    public void collidedWith(Alien alien) {}
+
 
     @Override
     public void collidedWith(Bonus bonus) {
@@ -82,5 +82,7 @@ public class Alien  extends AbstractMovable{
         game.alienIsDead(this);
         game.removeMovable(this);
     }
+
+
 
 }

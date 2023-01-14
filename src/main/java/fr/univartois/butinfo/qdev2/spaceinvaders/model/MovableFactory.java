@@ -1,5 +1,5 @@
 /**
- * Ce fichier fait partie du projet projet-2022-2023.
+ * Ce fichier fait partie du projet : projet-2022-2023.
  *
  * (c) 2022 paul.sagot
  * Tous droits réservés.
@@ -8,6 +8,8 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotComposite;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotLevel1;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.shot.ShotLevel2;
@@ -17,10 +19,12 @@ import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.BonusLife;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.AlienMoves4Strategy;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.util.List;
 import java.util.ArrayList;
 
 /**

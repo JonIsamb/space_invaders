@@ -1,5 +1,6 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Shot;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Spaceship;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.bonus.Bonus;
@@ -31,6 +32,11 @@ public class LifeDecorator extends MovableDecorator{
     }
 
     @Override
+    public boolean hasHitBorder(long delta) {
+        return !super.move(delta);
+    }
+
+    @Override
     public void collidedWith(Bonus bonus) {
 
     }
@@ -49,6 +55,8 @@ public class LifeDecorator extends MovableDecorator{
             //faire methode pour enlever l'autre element en contact
         }
     }
+
+
 
 }
 

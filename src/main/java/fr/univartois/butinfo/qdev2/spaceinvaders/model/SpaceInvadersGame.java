@@ -23,6 +23,7 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Escadrille;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.*;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
@@ -242,26 +243,37 @@ public final class SpaceInvadersGame {
         addMovable(this.ship);
         ArrayList<IAlienMovesStrategy> strategies = new ArrayList<>();
         strategies.add(new AlienMoves1Strategy());
-        strategies.add(new AlienMoves2Strategy());
-        strategies.add(new AlienMoves3Strategy());
-        strategies.add(new AlienMoves4Strategy());
+        //strategies.add(new AlienMoves2Strategy());
+        //strategies.add(new AlienMoves3Strategy());
+        //strategies.add(new AlienMoves4Strategy());
 
-        Collections.shuffle(strategies);
-        IAlienMovesStrategy strategy = strategies.get(0);
+        IAlienMovesStrategy strategy = new AlienMovesNullStrategy();
+        IMovable alien1 = this.factory.createAlien(10, getTopLimit(), strategy);
 
-        IMovable alien1 = this.factory.createAlien(0, getTopLimit());
+        IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit(), strategy);
+
+
+        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit(), strategy);
+
+        List<IMovable> aliens = new ArrayList<>();
+        aliens.add(alien1);
+        aliens.add(alien2);
+        aliens.add(alien3);
 
         Collections.shuffle(strategies);
         strategy = strategies.get(0);
-        IMovable alien2 = this.factory.createAlien(alien1.getWidth()*2, getTopLimit());
+        Escadrille escadrille = new Escadrille(this, strategy, spriteStore.getSprite("alien"));
 
-        Collections.shuffle(strategies);
-        strategy = strategies.get(0);
-        IMovable alien3 = this.factory.createAlien(alien2.getWidth()*4, getTopLimit());
 
-        addMovable(alien1);
-        addMovable(alien2);
-        addMovable(alien3);
+        escadrille.addAlien(alien1);
+        controller.addMovable(alien1);
+        escadrille.addAlien(alien2);
+        controller.addMovable(alien2);
+        escadrille.addAlien(alien3);
+        controller.addMovable(alien3);
+        movableObjects.add(escadrille);
+
+
         this.nbRemainingAliens += 3;
 
         // -- Ajout de quelques murs
@@ -400,6 +412,12 @@ public final class SpaceInvadersGame {
      */
     private void clearAllMovables() {
         for (IMovable movable : movableObjects) {
+            if (movable instanceof Escadrille){
+                List<IMovable> aliens = ((Escadrille) movable).getAliens();
+                for (IMovable alien : aliens){
+                    alien.consume();
+                }
+            }
             movable.consume();
         }
         movableObjects.clear();

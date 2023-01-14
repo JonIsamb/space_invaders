@@ -1,12 +1,10 @@
 package fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves;
 
-import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
-
-import java.util.Random;
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.IMovable;
 
 public class AlienMoves4Strategy implements IAlienMovesStrategy{
     @Override
-    public void update(Alien alien, boolean contactWithBorder) {
+    public void update(IMovable alien, boolean contactWithBorder) {
         if (contactWithBorder){
             alien.setHorizontalSpeed(-alien.getHorizontalSpeed());
         } else {

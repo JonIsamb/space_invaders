@@ -16,9 +16,12 @@
 
 package fr.univartois.butinfo.qdev2.spaceinvaders.model;
 
+import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.Alien;
 import fr.univartois.butinfo.qdev2.spaceinvaders.model.movables.moves.IAlienMovesStrategy;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.ISpriteStore;
 import fr.univartois.butinfo.qdev2.spaceinvaders.view.Sprite;
+
+import java.util.List;
 
 /**
  * L'interface {@link IMovableFactory} permet de créer différentes instances de
@@ -54,7 +57,7 @@ public interface IMovableFactory {
      *
      * @return L'alien qui a été créé.
      */
-    IMovable createAlien(int x, int y);
+    IMovable createAlien(int x, int y, IAlienMovesStrategy strategy);
 
     /**
      * Crée un nouvel objet pouvant se déplacer et représentant un vaisseau (allié).
